@@ -1,9 +1,33 @@
 let net;
 const webcamElement = document.getElementById('webcam');
-const classifier = knnClassifier.create();
+
+
+ 
  
 async function app() {
-    console.log('Loading mobilenet..');
+  
+  
+  // Put the object into storage
+
+// Retrieve the object from storage
+  var retrievedObject = localStorage.getItem('TFMclassifier');
+ 
+ if(retrievedObject!=null)
+{
+  
+  classifier= knnClassifier.create();
+  
+ // classifier.setClassifierDataset(JSON.parse(retrievedObject));
+
+
+} else
+{
+  classifier= knnClassifier.create();
+
+
+}
+  
+  console.log('Loading mobilenet..');
   
     // Load the model.
     net = await mobilenet.load();
@@ -20,6 +44,11 @@ async function app() {
   
       // Pass the intermediate activation to the classifier.
       classifier.addExample(activation, classId);
+
+      classDS= classifier.getClassifierDataset();
+
+      //localStorage.setItem('TFMclassifier', JSON.stringify(classDS));
+  
     };
   
     // When clicking a button, add an example for that class.
@@ -27,8 +56,11 @@ async function app() {
     document.getElementById('class-b').addEventListener('click', () => addExample(1));
     document.getElementById('class-c').addEventListener('click', () => addExample(2));
   
+
+    
     while (true) {
       if (classifier.getNumClasses() > 0) {
+
         // Get the activation from mobilenet from the webcam.
         const activation = net.infer(webcamElement, 'conv_preds');
         // Get the most likely class and confidences from the classifier module.
