@@ -40,6 +40,10 @@ async function app() {
     const addExample = classId => {
       // Get the intermediate activation of MobileNet 'conv_preds' and pass that
       // to the KNN classifier.
+
+ 
+      $(".captures").append(webcamElement); 
+      
       const activation = net.infer(webcamElement, 'conv_preds');
   
       // Pass the intermediate activation to the classifier.
