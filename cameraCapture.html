@@ -5,16 +5,25 @@
  height: 240px;
  border: 1px solid black;
 }
+
+.Capture
+{
+  border: 1px solid black;
+   
+}
+
 </style>
 
 <div id="my_camera"></div>
 <br/>
 <br/>
+<button id="class-start">Start Recording</button>
+    <button id="class-stop">Stop Recording</button>
 
 <input type=button value="Take Snapshot" onClick="take_snapshot()">
 <br/>
 <br/>
-<div id="results" ></div>
+<div id="results"  style="width:100%; height:300px;"  ></div>
  
 <!-- Webcam.min.js -->
 <script type="text/javascript" src="webcam.min.js"></script>
@@ -22,6 +31,23 @@
 
 <!-- Configure a few settings and attach camera -->
 <script language="JavaScript">
+
+var intervalId;
+$('#class-start').click(function (){
+  intervalId=window.setInterval(function(){
+    take_snapshot();
+  }, 5000);
+
+});
+    $('#class-stop').click(function (){
+
+      clearInterval(intervalId); 
+
+    });
+
+ 
+ 
+
  Webcam.set({
   width: 320,
   height: 240,
@@ -30,13 +56,19 @@
  });
  Webcam.attach( '#my_camera' );
 
- 
+
+function removePic(e)
+{
+  alert(e);
+
+}
+
 function take_snapshot() {
  
  // take snapshot and get image data
  Webcam.snap( function(data_uri) {
 
-    $("#results").append('<img  width="100px" height="100px" src="'+data_uri+'"/>');
+    $("#results").append('<div class="Capture"> <a href="#">Label</a>|<a href="#" onClick="javascript:$(this).parent().empty();">Delete</a>|<a href="#">Upload</a> <br/> <img  width="160px" height="120px" src="'+data_uri+'"/><br/></div>');
 
 
   } );
