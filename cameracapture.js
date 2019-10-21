@@ -43,7 +43,7 @@ var intervalId;
 
 function uploadimage(image){
 
-    alert (image);
+    alert($(image));
 }
 
  function take_snapshot() {
