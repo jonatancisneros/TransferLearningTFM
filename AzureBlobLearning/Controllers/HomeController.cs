@@ -32,7 +32,7 @@ namespace AzureBlobLearning.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult> UploadAsync()
+		public async Task<ActionResult> UploadAsync(string Id)
 		{
 			try
 			{
@@ -47,7 +47,7 @@ namespace AzureBlobLearning.Controllers
 					return BadRequest("Could not upload empty files");
 				}
 
-				await _azureBlobService.UploadAsync(files);
+				await _azureBlobService.UploadAsync(files, Id);
 				return RedirectToAction("Index");
 			}
 			catch (Exception ex)

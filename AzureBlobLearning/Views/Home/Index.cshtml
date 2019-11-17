@@ -5,9 +5,9 @@
 @*Header Section*@
 
 <!-- Webcam.min.js -->
-<script type="text/javascript" src="js/webcam.min.js"></script>
+<script type="text/javascript" src="~/js/webcam.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="js/cameracapture.js"></script>
+<script type="text/javascript" src="~/js/cameracapture.js"></script>
 
 
 <div class="jumbotron">
@@ -21,16 +21,19 @@
     Also the JS function displays the Upload submit button that calls UploadAsync that uploads the files to Azure Blob Storage.*@
 @using (Html.BeginForm("UploadAsync", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-<div class="fileUpload btn btn-primary">
-    <span>Select Files</span><input type="file" id="file" name="selectFiles" class="upload" onchange="DisplayFilesToUpload()" multiple />
+    <div class="fileUpload btn btn-primary">
+        <span>Select Files</span>
+        <input type="file" id="file" name="selectFiles" class="upload" onchange="DisplayFilesToUpload()" multiple />
 
-</div>
-@* This gets populated from the DisplayFilesToUpload() JS function*@
-<p id="FilesToUpload"></p>
+    </div>
+
+
+    @* This gets populated from the DisplayFilesToUpload() JS function*@
+    <p id="FilesToUpload"></p>
 }
 
 
-<div id="results" style="width:100%; height:300px;"></div>
+<div id="results" style="width:100%; height:300px; overflow-x:auto;"></div>
 
 @*loops through all files and displays three items:
     - The Image (159x159) - [Set in .thumb css class]

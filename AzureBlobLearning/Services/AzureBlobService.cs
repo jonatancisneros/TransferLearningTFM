@@ -10,7 +10,7 @@ namespace AzureBlobLearning.Services
 	public interface IAzureBlobService
 	{
 		Task<IEnumerable<Uri>> ListAsync();
-		Task UploadAsync(IFormFileCollection files);
+		Task UploadAsync(IFormFileCollection files, string fileName);
 		Task DeleteAsync(string fileUri);
 		Task DeleteAllAsync();
 	}
@@ -70,13 +70,13 @@ namespace AzureBlobLearning.Services
 			return allBlobs;
 		}
 
-		public async Task UploadAsync(IFormFileCollection files)
+		public async Task UploadAsync(IFormFileCollection files,string fileName)
 		{
 			var blobContainer = await _azureBlobConnectionFactory.GetBlobContainer();
 
 			for (int i = 0; i < files.Count; i++)
 			{
-				var blob = blobContainer.GetBlockBlobReference(GetRandomBlobName(files[i].FileName));
+				var blob = blobContainer.GetBlockBlobReference(fileName + "_" + GetRandomBlobName(fileName));
 				using (var stream = files[i].OpenReadStream())
 				{
 					await blob.UploadFromStreamAsync(stream);

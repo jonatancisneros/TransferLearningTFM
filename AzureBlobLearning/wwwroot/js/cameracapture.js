@@ -1,9 +1,8 @@
 var intervalId;
 
  //onload
+
  $(function(){
-
-
 
     Webcam.set({
         width: 320,
@@ -43,18 +42,33 @@ var intervalId;
 
 function uploadimage(image){
 
-    alert($(image));
+    let img = document.getElementById(image).src;
+
+
+    let lbl = document.getElementById('sel_' + image).value;
+
+
+
+    Webcam.upload(img, 'Home/UploadAsync/' + lbl, function (code, text) {
+        alert('Upload complete!');
+        // 'code' will be the HTTP response code from the server, e.g. 200
+        // 'text' will be the raw response content
+    });
+
 }
 
  function take_snapshot() {
        
     // take snapshot and get image data
+
     Webcam.snap( function(data_uri) {
         var guid=   createUUID() ;
-        var img= '<img id="' +  guid + '" width="160px" height="120px" src="'+data_uri+'"/>';
-        var options='<select class="selLabel"><option id="Start">Start message</option><option id="confirm">Confirm message</option><option id="lightson">Turn lights on</option><option id="lightsoff">lights off</option><option id="cancel">Cancel message</option><option id="weather">Weather</option></select>';
-       $("#results").append('<div class="Capture"> Select action  ' + options + '  |<a href="#" onClick="javascript:$(this).parent().empty();">Delete</a>|<a href="#" onClick="javascript:uploadimage(\'' + guid  + '\');">Upload</a> <br/> ' + img +  ' <br/></div>');
-      
+         var img= '<img id="' +  guid + '" width="160px" height="120px" src="'+data_uri+'"/>';
+        var options = '<select id="sel_' + guid + '" class="selLabel"><option id="Start">Start message</option><option id="confirm">Confirm message</option><option id="lightson">Turn lights on</option><option id="lightsoff">lights off</option><option id="cancel">Cancel message</option><option id="weather">Weather</option></select>';
+        $("#results").append('<div class="Capture"> Select action  ' + options + '  |<a href="#" onClick="javascript:$(this).parent().empty();">Delete</a>|<a href="#" onClick="javascript:uploadimage(\'' + guid  + '\');">Upload</a> <br/> ' + img +  ' <br/></div>');
+
+
+   
    
      } );
    }
