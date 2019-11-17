@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\AzureBlobLearning",
+    "\\AzureBlobLearning\\Views\\Home"
   ],
-  "SelectedNode": "\\cameraCapture.html",
+  "SelectedNode": "\\AzureBlobLearning.sln",
   "PreviewInSolutionExplorer": false
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Administrator\\Source\\Repos\\AzureBlobLearning\\AzureBlobLearning\\AzureBlobLearning\\AzureBlobLearning.csproj": {}
+    "C:\\Users\\Administrator\\source\\repos\\TransferLearningTFM\\AzureBlobLearning\\AzureBlobLearning.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Administrator\\Source\\Repos\\AzureBlobLearning\\AzureBlobLearning\\AzureBlobLearning\\AzureBlobLearning.csproj": {
+    "C:\\Users\\Administrator\\source\\repos\\TransferLearningTFM\\AzureBlobLearning\\AzureBlobLearning.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Administrator\\Source\\Repos\\AzureBlobLearning\\AzureBlobLearning\\AzureBlobLearning\\AzureBlobLearning.csproj",
+        "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\TransferLearningTFM\\AzureBlobLearning\\AzureBlobLearning.csproj",
         "projectName": "AzureBlobLearning",
-        "projectPath": "C:\\Users\\Administrator\\Source\\Repos\\AzureBlobLearning\\AzureBlobLearning\\AzureBlobLearning\\AzureBlobLearning.csproj",
+        "projectPath": "C:\\Users\\Administrator\\source\\repos\\TransferLearningTFM\\AzureBlobLearning\\AzureBlobLearning.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Administrator\\Source\\Repos\\AzureBlobLearning\\AzureBlobLearning\\AzureBlobLearning\\obj\\",
+        "outputPath": "C:\\Users\\Administrator\\source\\repos\\TransferLearningTFM\\AzureBlobLearning\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
