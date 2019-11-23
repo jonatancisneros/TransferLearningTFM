@@ -69,7 +69,7 @@ function uploadimage(image){
 
 
     Webcam.upload(img, 'Home/UploadAsync/' + lbl, function (code, text) {
-        alert('Upload complete!');
+        $('#MessageBox').html("One image uploaded");
         // 'code' will be the HTTP response code from the server, e.g. 200
         // 'text' will be the raw response content
     });
