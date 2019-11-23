@@ -114,25 +114,33 @@
 
 
 
+<div class="row">
+    <div class="col-sm-12 col-sm-12 alert alert-light alert-dismissible fade show">
+        <br />
+     The following images have been captured for training and can be used as example for instructions.
+        <br />
+
+    </div>
 
 
-<div class="row" style=" height:300px; overflow:auto">
-    @if (Model != null && Model.Count > 0)
-    {
-        foreach (var item in Model)
+
+    <div class="row" style=" height:300px; overflow:auto">
+        @if (Model != null && Model.Count > 0)
         {
+            foreach (var item in Model)
+            {
 
 
-            <div class="imageBlock">
-                <a href="@item" target="_blank"><img class="thumb" src="@item" alt="images" /> @item</a><br />
-                <div class="deleteDiv"><img class="deleteIcon" src="~/Images/deleteImage.png" title="Delete Image" onclick="deleteImage('@item');" /></div>
-            </div>
+                <div class="imageBlock">
+                    <a href="@item" target="_blank"><img class="thumb" src="@item" alt="images" /> @item</a><br />
+                    <div class="deleteDiv"><img class="deleteIcon" src="~/Images/deleteImage.png" title="Delete Image" onclick="deleteImage('@item');" /></div>
+                </div>
+            }
+
+            using (Html.BeginForm("DeleteAll", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @*<div class="fileUpload btn btn-danger"><span>Delete All Files</span><input type="submit" name="deleteAll" class="upload" /></div>*@
+            }
         }
 
-        using (Html.BeginForm("DeleteAll", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            @*<div class="fileUpload btn btn-danger"><span>Delete All Files</span><input type="submit" name="deleteAll" class="upload" /></div>*@
-        }
-    }
-
-</div>
+    </div>
