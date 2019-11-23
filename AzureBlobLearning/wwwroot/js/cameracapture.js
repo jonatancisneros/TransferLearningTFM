@@ -84,9 +84,10 @@ function uploadimage(image){
         var guid=   createUUID() ;
         var img = '<img class="rounded-circle" id="' +  guid + '" width="60px" height="60px" src="'+data_uri+'"/>';
         var options = '<select id="sel_' + guid + '" class="selLabel">\
-            < option id = "Select" >Select</option> \
-            < option id = "Start" >Start</option> \
+            <option id = "Select" >Select</option> \
+            <option id = "Start" >Start</option> \
             <option id="confirm">Confirm</option> \
+            <option id="cancel">Cancel</option> \
             <option id="one">1</option> \
             <option id="two">2</option> \
             <option id="three">3</option> \
