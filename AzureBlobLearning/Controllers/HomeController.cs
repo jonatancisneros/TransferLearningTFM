@@ -46,8 +46,8 @@ namespace AzureBlobLearning.Controllers
 				{
 					return BadRequest("Could not upload empty files");
 				}
-
-				await _azureBlobService.UploadAsync(files, Id);
+ 
+                await _azureBlobService.UploadAsync(files, Id);
 				return RedirectToAction("Index");
 			}
 			catch (Exception ex)

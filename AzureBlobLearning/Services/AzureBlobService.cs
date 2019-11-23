@@ -73,7 +73,7 @@ namespace AzureBlobLearning.Services
 		public async Task UploadAsync(IFormFileCollection files,string fileName)
 		{
 			var blobContainer = await _azureBlobConnectionFactory.GetBlobContainer();
-
+       
 			for (int i = 0; i < files.Count; i++)
 			{
 				var blob = blobContainer.GetBlockBlobReference(fileName + "_" + GetRandomBlobName(fileName));

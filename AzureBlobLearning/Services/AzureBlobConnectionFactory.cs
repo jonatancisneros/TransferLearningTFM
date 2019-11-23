@@ -17,6 +17,7 @@ namespace AzureBlobLearning.Services
 		private CloudBlobClient _blobClient;
 		private CloudBlobContainer _blobContainer;
 
+        public string ContainerName { get; set; }
 		public AzureBlobConnectionFactory(IConfiguration configuration)
 		{
 			_configuration = configuration;
@@ -27,7 +28,7 @@ namespace AzureBlobLearning.Services
 			if (_blobContainer != null)
 				return _blobContainer;
 
-			var containerName = _configuration.GetValue<string>("ContainerName");
+            var containerName =  _configuration.GetValue<string>("ContainerName");
 			if (string.IsNullOrWhiteSpace(containerName))
 			{
 				throw new ArgumentException("Configuration must contain ContainerName");

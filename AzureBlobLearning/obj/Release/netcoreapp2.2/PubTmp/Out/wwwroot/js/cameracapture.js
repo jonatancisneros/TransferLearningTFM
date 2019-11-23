@@ -1,5 +1,7 @@
 var intervalId;
+var initialTime = 3000;
 
+var timing = initialTime;
  //onload
 
  $(function(){
@@ -13,14 +15,31 @@ var intervalId;
        Webcam.attach( '#my_camera' );
       
        $('#class-start').click(function (){
-        intervalId=window.setInterval(function(){
-          take_snapshot();
-        }, 5000);
+           intervalId = window.setInterval(function () {
+            
+               if (timing == 0) {
+                   $('#MessageBox').html("Smile!");
+               } else {
+
+                   $('#MessageBox').html("Taking a pic in: " + (timing / 1000));
+               }
+               if (timing <= 0) {
+
+           
+                   timing = initialTime;
+                   take_snapshot();
+                   
+               }
+
+               timing -= 1000;
+
+        }, 1000);
       
       });
       
       $('#class-stop').click(function (){
-          clearInterval(intervalId); 
+          clearInterval(intervalId);
+          $('#MessageBox').html("Ready to record!");
       });
       
 
@@ -63,9 +82,25 @@ function uploadimage(image){
 
     Webcam.snap( function(data_uri) {
         var guid=   createUUID() ;
-         var img= '<img id="' +  guid + '" width="160px" height="120px" src="'+data_uri+'"/>';
-        var options = '<select id="sel_' + guid + '" class="selLabel"><option id="Start">Start message</option><option id="confirm">Confirm message</option><option id="lightson">Turn lights on</option><option id="lightsoff">lights off</option><option id="cancel">Cancel message</option><option id="weather">Weather</option></select>';
-        $("#results").append('<div class="Capture"> Select action  ' + options + '  |<a href="#" onClick="javascript:$(this).parent().empty();">Delete</a>|<a href="#" onClick="javascript:uploadimage(\'' + guid  + '\');">Upload</a> <br/> ' + img +  ' <br/></div>');
+        var img = '<img class="rounded-circle" id="' +  guid + '" width="60px" height="60px" src="'+data_uri+'"/>';
+        var options = '<select id="sel_' + guid + '" class="selLabel">\
+            <option id = "Select" >Select</option> \
+            <option id = "Start" >Start</option> \
+            <option id="confirm">Confirm</option> \
+            <option id="cancel">Cancel</option> \
+            <option id="one">1</option> \
+            <option id="two">2</option> \
+            <option id="three">3</option> \
+            <option id="four">4</option> \
+            <option id="five">5</option> \
+            <option id="six">6</option> \
+            <option id="seven">7</option> \
+            <option id="eight">8</option> \
+            <option id="nine">9</option> \
+            </select>';
+
+
+        $("#results").prepend('<div class="Capture">' + options + ' |<a href="#" onClick="javascript:$(this).parent().empty();">Delete</a>|<a href="#" onClick="javascript:uploadimage(\'' + guid  + '\');">Upload</a> <br/> ' + img +  ' <br/></div>');
 
 
    
