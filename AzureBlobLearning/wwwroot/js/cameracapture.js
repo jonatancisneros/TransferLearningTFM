@@ -2,64 +2,67 @@ var intervalId;
 var initialTime = 3000;
 
 var timing = initialTime;
- //onload
+//onload
 
- $(function(){
+$(function () {
 
     Webcam.set({
         width: 320,
         height: 240,
         image_format: 'jpeg',
         jpeg_quality: 90
-       });
-       Webcam.attach( '#my_camera' );
-      
-       $('#class-start').click(function (){
-           intervalId = window.setInterval(function () {
-            
-               if (timing == 0) {
-                   $('#MessageBox').html("Smile!");
-               } else {
+    });
+    Webcam.attach('#my_camera');
 
-                   $('#MessageBox').html("Taking a pic in: " + (timing / 1000));
-               }
-               if (timing <= 0) {
+    $('#class-start').click(function () {
+        intervalId = window.setInterval(function () {
 
-           
-                   timing = initialTime;
-                   take_snapshot();
-                   
-               }
+            if (timing == 0) {
+                $('#MessageBox').html("Smile!");
+            } else {
 
-               timing -= 1000;
+                $('#MessageBox').html("Taking a pic in: " + (timing / 1000));
+            }
+            if (timing <= 0) {
+
+
+                timing = initialTime;
+                take_snapshot();
+
+            }
+
+            timing -= 1000;
 
         }, 1000);
-      
-      });
-      
-      $('#class-stop').click(function (){
-          clearInterval(intervalId);
-          $('#MessageBox').html("Ready to record!");
-      });
-      
 
-      function removePic(e)
-      {
+    });
+
+    $('#class-stop').click(function () {
+        clearInterval(intervalId);
+        $('#MessageBox').html("Ready to record!");
+    });
+
+
+    function removePic(e) {
         alert(e);
-      
-      }
-      
-      function labelElement(obj)
-      {
+
+    }
+
+    function labelElement(obj) {
         alert(obj.parent().id);
-      
-      }
-      
-  
 
- })
+    }
 
-function uploadimage(image){
+
+
+})
+
+function uploadimage(image) {
+
+    $('#MessageBox').html("Ready to reccord.");
+
+    clearInterval(intervalId);
+
 
     let img = document.getElementById(image).src;
 
@@ -69,20 +72,26 @@ function uploadimage(image){
 
 
     Webcam.upload(img, 'Home/UploadAsync/' + lbl, function (code, text) {
-        $('#MessageBox').html("One image uploaded");
+         $('#MessageBox').html("Image uploaded!");
+
+        alert('Upload complete!');
+
+
+        //   $(lbl).parent().empty();
+
         // 'code' will be the HTTP response code from the server, e.g. 200
         // 'text' will be the raw response content
     });
 
 }
 
- function take_snapshot() {
-       
+function take_snapshot() {
+
     // take snapshot and get image data
 
-    Webcam.snap( function(data_uri) {
-        var guid=   createUUID() ;
-        var img = '<img class="rounded-circle" id="' +  guid + '" width="60px" height="60px" src="'+data_uri+'"/>';
+    Webcam.snap(function (data_uri) {
+        var guid = createUUID();
+        var img = '<img class="rounded" id="' + guid + '" width="60px" height="60px" src="' + data_uri + '"/>';
         var options = '<select id="sel_' + guid + '" class="selLabel">\
             <option id = "Select" >Select</option> \
             <option id = "Start" >Start</option> \
@@ -100,15 +109,15 @@ function uploadimage(image){
             </select>';
 
 
-        $("#results").prepend('<div class="Capture">' + options + ' |<a href="#" onClick="javascript:$(this).parent().empty();">Delete</a>|<a href="#" onClick="javascript:uploadimage(\'' + guid  + '\');">Upload</a> <br/> ' + img +  ' <br/></div>');
+        $("#results").append('<div class="Capture">' + options + ' |<a href="#" onClick="javascript:$(this).parent().empty();">Delete</a>|<a href="#" onClick="javascript:uploadimage(\'' + guid + '\');">Upload</a> <br/> ' + img + ' <br/></div>');
 
 
-   
-   
-     } );
-   }
 
-   function createUUID() {
+
+    });
+}
+
+function createUUID() {
     // http://www.ietf.org/rfc/rfc4122.txt
     var s = [];
     var hexDigits = "0123456789abcdef";
