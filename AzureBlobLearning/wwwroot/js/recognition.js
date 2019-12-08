@@ -66,7 +66,7 @@ async function app() {
 
       //  $(".captures").append(imgv);
 
-        $('#MessageBox').html("Adding images to KNN: " + classId);
+        $('#MessageBox').html("Adding images to KNN: " + classes[classId]);
 
         const activation = net.infer(imgv, 'conv_preds');
 
@@ -89,13 +89,19 @@ async function app() {
         img2.width = "400";
         img2.height = "400";
 
-        let classValue = img2.src.substring(img2.src.lastIndexOf('/') + 1);
 
-        let classValueParsed = classValue.substring(0, classValue.indexOf('_'));
+        img2.onload = function () {
 
-        console.log(classValueParsed);
+            let classValue = img2.src.substring(img2.src.lastIndexOf('/') + 1);
 
-        addExampleFromExisting(img2, classes.indexOf(classValueParsed));
+            let classValueParsed = classValue.substring(0, classValue.indexOf('_'));
+
+            console.log(classValueParsed);
+
+            addExampleFromExisting(img2, classes.indexOf(classValueParsed));
+
+
+        };
 
 
     });
@@ -116,9 +122,13 @@ async function app() {
         // Get the activation from mobilenet from the webcam.
         const activation = net.infer(webcamElement, 'conv_preds');
         // Get the most likely class and confidences from the classifier module.
+
         const result = await classifier.predictClass(activation);
   
        //   const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9','cancel', 'confirm', 'select','start' ];
+
+
+          $('#MessageBox').html("");
 
           document.getElementById('console').innerText = `
           prediction: ${classes[result.classIndex]}\n
