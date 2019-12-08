@@ -1,6 +1,7 @@
 let net;
 const webcamElement = document.getElementById('webcam');
 
+const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'cancel', 'confirm', 'select', 'start'];
 
  
  
@@ -26,13 +27,16 @@ async function app() {
 
 
 }
-  
+
+    $('#MessageBox').html("Loading mobilenet..");
   console.log('Loading mobilenet..');
   
     // Load the model.
     net = await mobilenet.load();
     console.log('Successfully loaded model');
-  
+
+    $('#MessageBox').html("Model Loaded");
+
     await setupWebcam();
   
     // Reads an image from the webcam and associates it with a specific class
@@ -54,11 +58,55 @@ async function app() {
       //localStorage.setItem('TFMclassifier', JSON.stringify(classDS));
   
     };
-  
+
+    const addExampleFromExisting = (imgv, classId) => {
+        // Get the intermediate activation of MobileNet 'conv_preds' and pass that
+        // to the KNN classifier.
+
+
+      //  $(".captures").append(imgv);
+
+        $('#MessageBox').html("Adding images to KNN: " + classId);
+
+        const activation = net.infer(imgv, 'conv_preds');
+
+        // Pass the intermediate activation to the classifier.
+
+        classifier.addExample(activation, classId);
+
+        classDS = classifier.getClassifierDataset();
+
+        //localStorage.setItem('TFMclassifier', JSON.stringify(classDS));
+
+    };
+
+    $('.thumb').each(function () {
+
+
+        var img2 = document.createElement('img'); // Use DOM HTMLImageElement
+        img2.src = $(this).attr('src');
+        img2.crossOrigin = "anonymous";
+        img2.width = "400";
+        img2.height = "400";
+
+        let classValue = img2.src.substring(img2.src.lastIndexOf('/') + 1);
+
+        let classValueParsed = classValue.substring(0, classValue.indexOf('_'));
+
+        console.log(classValueParsed);
+
+        addExampleFromExisting(img2, classes.indexOf(classValueParsed));
+
+
+    });
+
+    $('#MessageBox').html("");
+
+
     // When clicking a button, add an example for that class.
-    document.getElementById('class-a').addEventListener('click', () => addExample(0));
-    document.getElementById('class-b').addEventListener('click', () => addExample(1));
-    document.getElementById('class-c').addEventListener('click', () => addExample(2));
+  //  document.getElementById('class-a').addEventListener('click', () => addExample(0));
+   // document.getElementById('class-b').addEventListener('click', () => addExample(1));
+   // document.getElementById('class-c').addEventListener('click', () => addExample(2));
   
 
     
@@ -70,8 +118,9 @@ async function app() {
         // Get the most likely class and confidences from the classifier module.
         const result = await classifier.predictClass(activation);
   
-        const classes = ['A', 'B', 'C'];
-        document.getElementById('console').innerText = `
+       //   const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9','cancel', 'confirm', 'select','start' ];
+
+          document.getElementById('console').innerText = `
           prediction: ${classes[result.classIndex]}\n
           probability: ${result.confidences[result.classIndex]}
         `;

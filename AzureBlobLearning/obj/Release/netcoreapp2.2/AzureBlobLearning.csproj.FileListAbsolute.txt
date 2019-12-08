@@ -30,3 +30,5 @@ C:\Users\Administrator\Source\Repos\TransferLearningTFM\AzureBlobLearning\obj\Re
 C:\Users\Administrator\Source\Repos\TransferLearningTFM\AzureBlobLearning\obj\Release\netcoreapp2.2\AzureBlobLearning.dll
 C:\Users\Administrator\Source\Repos\TransferLearningTFM\AzureBlobLearning\obj\Release\netcoreapp2.2\AzureBlobLearning.pdb
 C:\Users\Administrator\Source\Repos\TransferLearningTFM\AzureBlobLearning\obj\Release\netcoreapp2.2\AzureBlobLearning.csproj.CopyComplete
+C:\Users\Administrator\Source\Repos\TransferLearningTFM\AzureBlobLearning\obj\Release\netcoreapp2.2\Razor\Views\Recognition\Index.cshtml.g.cs
+C:\Users\Administrator\Source\Repos\TransferLearningTFM\AzureBlobLearning\obj\Release\netcoreapp2.2\Razor\Views\Recognition\Privacy.cshtml.g.cs
