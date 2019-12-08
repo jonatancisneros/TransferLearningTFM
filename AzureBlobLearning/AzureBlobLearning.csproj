@@ -22,6 +22,10 @@
 
   <ItemGroup>
     <Folder Include="InitialTests\" />
+    <Folder Include="Views\Recognition\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="Views\Home %28copy%29\Privacy.cshtml" />
+  </ItemGroup>
 </Project>
