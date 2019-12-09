@@ -150,11 +150,13 @@ async function app() {
 
           $('#MessageBox').html("");
 
-          console.log(result.confidences);
+          //console.log(result.confidences);
 
           document.getElementById('console').innerText = `
           prediction: ${classes[result.classIndex]}\n
-          probability: ${result.confidences[result.classIndex]}
+          probability: ${result.confidences[result.classIndex]}\n
+          clases: ${JSON.stringify(classes)}\n
+          confidences: ${JSON.stringify(result.confidences)}
         `;
       }
   

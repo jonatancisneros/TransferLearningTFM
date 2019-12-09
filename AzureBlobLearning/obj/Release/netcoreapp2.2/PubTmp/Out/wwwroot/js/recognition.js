@@ -1,12 +1,14 @@
 let net;
 const webcamElement = document.getElementById('webcam');
 
-const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'cancel', 'confirm', 'select', 'start'];
+const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Cancel', 'Confirm', 'Select', 'Start'];
+
+
 
  
- 
 async function app() {
-  
+
+
   
   // Put the object into storage
 
@@ -66,7 +68,7 @@ async function app() {
 
       //  $(".captures").append(imgv);
 
-        $('#MessageBox').html("Adding images to KNN: " + classId);
+         $('#MessageBox').html("Adding images to KNN: " + classId + " / " + classes[classId]);
 
         const activation = net.infer(imgv, 'conv_preds');
 
@@ -84,18 +86,42 @@ async function app() {
 
 
         var img2 = document.createElement('img'); // Use DOM HTMLImageElement
-        img2.src = $(this).attr('src');
-        img2.crossOrigin = "anonymous";
+
+
+        img2.setAttribute('crossOrigin', 'anonymous');
+        img2.src =  $(this).attr('src');  
+
+       
+
         img2.width = "400";
         img2.height = "400";
 
-        let classValue = img2.src.substring(img2.src.lastIndexOf('/') + 1);
+        img2.onload = function () {
 
-        let classValueParsed = classValue.substring(0, classValue.indexOf('_'));
+            let classValue = img2.src.substring(img2.src.lastIndexOf('/') + 1);
 
-        console.log(classValueParsed);
+            let classValueParsed = classValue.substring(0, classValue.indexOf('_'));
 
-        addExampleFromExisting(img2, classes.indexOf(classValueParsed));
+            console.log(classValueParsed);
+            //$('#MessageBox').html(classValueParsed);
+
+
+            var canvas = document.createElement("canvas");
+            canvas.width = this.width;
+            canvas.height = this.height;
+
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(this, 0, 0);
+
+            var dataURL = canvas.toDataURL("image/png");
+
+            var imageData = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+
+            //console.log(imageData);
+            addExampleFromExisting(img2, classes.indexOf(classValueParsed));
+
+
+        };
 
 
     });
@@ -116,13 +142,21 @@ async function app() {
         // Get the activation from mobilenet from the webcam.
         const activation = net.infer(webcamElement, 'conv_preds');
         // Get the most likely class and confidences from the classifier module.
+
         const result = await classifier.predictClass(activation);
   
        //   const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9','cancel', 'confirm', 'select','start' ];
 
+
+          $('#MessageBox').html("");
+
+          //console.log(result.confidences);
+
           document.getElementById('console').innerText = `
           prediction: ${classes[result.classIndex]}\n
-          probability: ${result.confidences[result.classIndex]}
+          probability: ${result.confidences[result.classIndex]}\n
+          clases: ${JSON.stringify(classes)}\n
+          confidences: ${JSON.stringify(result.confidences)}
         `;
       }
   

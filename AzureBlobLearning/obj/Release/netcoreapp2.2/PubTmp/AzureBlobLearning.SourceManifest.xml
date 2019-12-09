@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
-  <IisApp path="C:\Users\Administrator\Source\Repos\TransferLearningTFM\AzureBlobLearning\obj\Release\netcoreapp2.2\PubTmp\Out\" />
+  <IisApp path="C:\Users\Administrator\source\repos\TransferLearningTFM\AzureBlobLearning\obj\Release\netcoreapp2.2\PubTmp\Out\" />
 </sitemanifest>
