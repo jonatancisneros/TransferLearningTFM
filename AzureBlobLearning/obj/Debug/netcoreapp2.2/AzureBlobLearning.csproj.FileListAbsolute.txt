@@ -114,6 +114,8 @@ C:/Users/Administrator/Source/Repos/TransferLearningTFM/AzureBlobLearning/obj/De
 /Users/jonatancisnerosrodriguez/Desktop/Varios2019/Transferlearning/AzureBlobLearning/obj/Debug/netcoreapp2.2/AzureBlobLearning.RazorCoreGenerate.cache
 /Users/jonatancisnerosrodriguez/Desktop/Varios2019/Transferlearning/AzureBlobLearning/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.cshtml.g.cs
 /Users/jonatancisnerosrodriguez/Desktop/Varios2019/Transferlearning/AzureBlobLearning/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.cshtml.g.cs
+/Users/jonatancisnerosrodriguez/Desktop/Varios2019/Transferlearning/AzureBlobLearning/obj/Debug/netcoreapp2.2/Razor/Views/Recognition/Index.cshtml.g.cs
+/Users/jonatancisnerosrodriguez/Desktop/Varios2019/Transferlearning/AzureBlobLearning/obj/Debug/netcoreapp2.2/Razor/Views/Recognition/Privacy.cshtml.g.cs
 /Users/jonatancisnerosrodriguez/Desktop/Varios2019/Transferlearning/AzureBlobLearning/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Error.cshtml.g.cs
 /Users/jonatancisnerosrodriguez/Desktop/Varios2019/Transferlearning/AzureBlobLearning/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.cshtml.g.cs
 /Users/jonatancisnerosrodriguez/Desktop/Varios2019/Transferlearning/AzureBlobLearning/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.cshtml.g.cs
@@ -126,5 +128,3 @@ C:/Users/Administrator/Source/Repos/TransferLearningTFM/AzureBlobLearning/obj/De
 /Users/jonatancisnerosrodriguez/Desktop/Varios2019/Transferlearning/AzureBlobLearning/obj/Debug/netcoreapp2.2/AzureBlobLearning.dll
 /Users/jonatancisnerosrodriguez/Desktop/Varios2019/Transferlearning/AzureBlobLearning/obj/Debug/netcoreapp2.2/AzureBlobLearning.pdb
 /Users/jonatancisnerosrodriguez/Desktop/Varios2019/Transferlearning/AzureBlobLearning/obj/Debug/netcoreapp2.2/AzureBlobLearning.csproj.CopyComplete
-/Users/jonatancisnerosrodriguez/Desktop/Varios2019/Transferlearning/AzureBlobLearning/obj/Debug/netcoreapp2.2/Razor/Views/Recognition/Index.cshtml.g.cs
-/Users/jonatancisnerosrodriguez/Desktop/Varios2019/Transferlearning/AzureBlobLearning/obj/Debug/netcoreapp2.2/Razor/Views/Recognition/Privacy.cshtml.g.cs

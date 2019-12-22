@@ -1,16 +1,9 @@
 ﻿<Properties StartupConfiguration="{8BEE220B-15DD-46F3-AD56-5AA872E745D8}|Default">
   <MonoDevelop.Ide.ItemProperties.AzureBlobLearning PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="AzureBlobLearning/Services/AzureBlobService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AzureBlobLearning/Views/Recognition/Index.cshtml">
     <Files>
-      <File FileName="AzureBlobLearning/Views/Recognition/Index.cshtml" Line="69" Column="25" />
-      <File FileName="AzureBlobLearning/wwwroot/js/index.js" Line="88" Column="27" />
-      <File FileName="AzureBlobLearning/Views/index.html" Line="14" Column="75" />
-      <File FileName="AzureBlobLearning/Views/Shared/_Layout.cshtml" Line="79" Column="1" />
-      <File FileName="AzureBlobLearning/Views/Home/Index.cshtml" Line="75" Column="48" />
-      <File FileName="AzureBlobLearning/Views/cameraCapture.html" Line="14" Column="1" />
-      <File FileName="AzureBlobLearning/wwwroot/js/cameracapture.js" Line="21" Column="49" />
-      <File FileName="AzureBlobLearning/Controllers/HomeController.cs" Line="23" Column="47" />
-      <File FileName="AzureBlobLearning/Services/AzureBlobService.cs" Line="72" Column="1" />
+      <File FileName="AzureBlobLearning/wwwroot/js/recognition.js" Line="5" Column="92" />
+      <File FileName="AzureBlobLearning/Views/Recognition/Index.cshtml" Line="92" Column="7" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,15 +11,13 @@
           <Node name="AzureBlobLearning" expanded="True">
             <Node name="AzureBlobLearning" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Services" expanded="True">
-                <Node name="AzureBlobService.cs" selected="True" />
-              </Node>
               <Node name="Views" expanded="True">
-                <Node name="Home" expanded="True" />
-                <Node name="Recognition" expanded="True" />
-                <Node name="Shared" expanded="True" />
+                <Node name="Recognition" expanded="True">
+                  <Node name="Index.cshtml" selected="True" />
+                </Node>
               </Node>
               <Node name="wwwroot" expanded="True">
+                <Node name="css" expanded="True" />
                 <Node name="js" expanded="True" />
               </Node>
             </Node>
@@ -38,9 +29,7 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/jonatancisnerosrodriguez/Desktop/Varios2019/Transferlearning/AzureBlobLearning/wwwroot/js/recognition.js" relfile="AzureBlobLearning/wwwroot/js/recognition.js" line="83" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

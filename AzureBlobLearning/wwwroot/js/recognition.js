@@ -1,8 +1,10 @@
 let net;
 const webcamElement = document.getElementById('webcam');
 
-const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Cancel', 'Confirm', 'Select', 'Start'];
 
+const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Cancel', 'Confirm', 'StandBy', 'Start'];
+
+//const classes = ['Confirm',  'Start','StandBy'];
 
 
  
@@ -152,12 +154,45 @@ async function app() {
 
           //console.log(result.confidences);
 
-          document.getElementById('console').innerText = `
-          prediction: ${classes[result.classIndex]}\n
-          probability: ${result.confidences[result.classIndex]}\n
+
+          if (result.label != null) {
+
+              document.getElementById('console').innerText = `
+          prediction ID: ${result.label}\n
+          prediction: ${classes[result.label]}\n
+          probability: ${result.confidences[result.label]}\n
           clases: ${JSON.stringify(classes)}\n
           confidences: ${JSON.stringify(result.confidences)}
         `;
+
+             // console.log(classes[result.classIndex]);
+
+              if (result.confidences[result.label] == null) { return; }
+              if (classes[result.label] == "Start") {
+
+                  $('#happy').click();
+                //  $('#Display').removeClass();
+                 // $('#Display').addClass('alert-success alert-dismissible fade show');
+
+                  $('#MessageBox').html("Hello!");
+
+              }
+              else if (classes[result.label] == "Cancel") {
+
+                  $('#angry').click();
+               //   $('#MessageBox').html("");
+                //  $('#Display').removeClass();
+              } else   {
+
+                  $('#normal').click();
+                  //   $('#MessageBox').html("");
+                  //  $('#Display').removeClass();
+              }
+
+
+          }
+
+
       }
   
       await tf.nextFrame();

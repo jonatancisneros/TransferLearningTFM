@@ -93,7 +93,7 @@ function take_snapshot() {
         var guid = createUUID();
         var img = '<img class="rounded" id="' + guid + '" width="60px" height="60px" src="' + data_uri + '"/>';
         var options = '<select id="sel_' + guid + '" class="selLabel">\
-            <option id = "Select" >Select</option> \
+            <option id = "StandBy" >StandBy</option> \
             <option id = "Start" >Start</option> \
             <option id="confirm">Confirm</option> \
             <option id="cancel">Cancel</option> \
