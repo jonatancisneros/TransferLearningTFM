@@ -1,7 +1,9 @@
 var intervalId;
-var initialTime = 3000;
+var initialTime = 500;
 
 var timing = initialTime;
+
+var uploading = 0;
 //onload
 
 $(function () {
@@ -18,10 +20,10 @@ $(function () {
         intervalId = window.setInterval(function () {
 
             if (timing == 0) {
-                $('#MessageBox').html("Smile!");
+                $('#MessageBox').html("<i class= 'fa fa-camera'></i >");
             } else {
 
-                $('#MessageBox').html("Taking a pic in: " + (timing / 1000));
+                $('#MessageBox').html( "<i class= 'fa fa-film'></i >");
             }
             if (timing <= 0) {
 
@@ -31,9 +33,9 @@ $(function () {
 
             }
 
-            timing -= 1000;
+            timing -= 100;
 
-        }, 1000);
+        }, 100);
 
     });
 
@@ -59,7 +61,7 @@ $(function () {
 
 function uploadimage(image) {
 
-    $('#MessageBox').html("Ready to reccord.");
+    $('#MessageBox').html("<i class= 'fa fa-database' ></i >");
 
     clearInterval(intervalId);
 
@@ -72,18 +74,23 @@ function uploadimage(image) {
 
 
     Webcam.upload(img, 'Home/UploadAsync/' + lbl, function (code, text) {
-         $('#MessageBox').html("Image uploaded!");
+        uploading += 1; 
 
-        alert('Upload complete!');
-
-
-        //   $(lbl).parent().empty();
-
-        // 'code' will be the HTTP response code from the server, e.g. 200
-        // 'text' will be the raw response content
+        $('#MessageBox').html("Uploaded " + uploading + " images");
     });
 
 }
+
+
+function assignAndUpdateAll() {
+    $('#MessageBox').html("<i class= 'fa fa-update'></i >");
+
+
+    $('.selLabel').val($('#optAll').val());
+
+    $('.uploadButton').click();
+}
+
 
 function take_snapshot() {
 
@@ -92,7 +99,7 @@ function take_snapshot() {
     Webcam.snap(function (data_uri) {
         var guid = createUUID();
         var img = '<img class="rounded" id="' + guid + '" width="60px" height="60px" src="' + data_uri + '"/>';
-        var options = '<select id="sel_' + guid + '" class="selLabel">\
+        var options = '<select style="FONT-SIZE: 9px;" id="sel_' + guid + '" class="selLabel">\
             <option id = "StandBy" >StandBy</option> \
             <option id = "Start" >Start</option> \
             <option id="confirm">Confirm</option> \
@@ -109,7 +116,9 @@ function take_snapshot() {
             </select>';
 
 
-        $("#results").append('<div class="Capture">' + options + ' |<a href="#" onClick="javascript:$(this).parent().empty();">Delete</a>|<a href="#" onClick="javascript:uploadimage(\'' + guid + '\');">Upload</a> <br/> ' + img + ' <br/></div>');
+        $("#results").append('<div class="Capture">' + img+
+            '<a href="#" style="color:red" onClick="javascript:$(this).parent().empty();"> <i class= "fa fa-trash" ></i ></a> \
+            |<a href="#" class="uploadButton" onClick="javascript:uploadimage(\'' + guid + '\');"><i class= "fa fa-upload" ></i ></a>|' +   options+ '  </div > ');
 
 
 

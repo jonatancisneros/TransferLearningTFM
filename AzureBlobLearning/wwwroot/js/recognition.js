@@ -1,14 +1,36 @@
 let net;
 const webcamElement = document.getElementById('webcam');
-
+var commandHistory = "StandBy";
 
 const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Cancel', 'Confirm', 'StandBy', 'Start'];
 
 //const classes = ['Confirm',  'Start','StandBy'];
 
+var chartValues = [];
+
+
+function createChart() {
+    var spec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
+        "description": "A simple bar chart with embedded data.",
+        "data": {
+            "values": chartValues
+        },
+        "mark": "bar",
+        "encoding": {
+            "x": {  "field": "class", "type": "ordinal" },
+            "y": { "aggregate": "sum","field": "values", "type": "quantitative" }
+        }
+    };
+    vega.embed("#vis", spec);
+
+}
 
  
 async function app() {
+
+
+
 
 
   
@@ -16,7 +38,9 @@ async function app() {
 
 // Retrieve the object from storage
   var retrievedObject = localStorage.getItem('TFMclassifier');
- 
+
+
+
  if(retrievedObject!=null)
 {
   
@@ -84,6 +108,8 @@ async function app() {
 
     };
 
+
+
     $('.thumb').each(function () {
 
 
@@ -97,6 +123,7 @@ async function app() {
 
         img2.width = "400";
         img2.height = "400";
+
 
         img2.onload = function () {
 
@@ -123,19 +150,27 @@ async function app() {
             addExampleFromExisting(img2, classes.indexOf(classValueParsed));
 
 
+            chartValues.push({ "class": classValueParsed,"values":1   });    
+
+
+          
+
+     
+
+
         };
 
 
     });
 
+
+  
+
+
+  
     $('#MessageBox').html("");
 
 
-    // When clicking a button, add an example for that class.
-  //  document.getElementById('class-a').addEventListener('click', () => addExample(0));
-   // document.getElementById('class-b').addEventListener('click', () => addExample(1));
-   // document.getElementById('class-c').addEventListener('click', () => addExample(2));
-  
 
     
     while (true) {
@@ -157,7 +192,9 @@ async function app() {
 
           if (result.label != null) {
 
-              document.getElementById('console').innerText = `
+
+
+        /*    document.getElementById('console').innerText = `
           prediction ID: ${result.label}\n
           prediction: ${classes[result.label]}\n
           probability: ${result.confidences[result.label]}\n
@@ -165,10 +202,16 @@ async function app() {
           confidences: ${JSON.stringify(result.confidences)}
         `;
 
+         */
+
              // console.log(classes[result.classIndex]);
 
               if (result.confidences[result.label] == null) { return; }
-              if (classes[result.label] == "Start") {
+
+              commandSelection = result.confidences[result.label];
+
+              if (commandSelection == "StandBy") { return; }
+              if (commandSelection == "Start") {
 
                   $('#happy').click();
                 //  $('#Display').removeClass();
@@ -177,18 +220,37 @@ async function app() {
                   $('#MessageBox').html("Hello!");
 
               }
-              else if (classes[result.label] == "Cancel") {
+              else if (commandSelection == "Cancel") {
 
                   $('#angry').click();
                //   $('#MessageBox').html("");
                 //  $('#Display').removeClass();
-              } else   {
+              } else if (commandSelection == "2") {
+
+                  $('#MessageBox').html("Confirm number Two?");
+                 //   $('#MessageBox').html("");
+                  //  $('#Display').removeClass();
+              }
+
+              else if (commandSelection == "Confirm") {
+                  if (commandHistory == "2");
+                  alert('confirmed number 2');
+
+                  $('#normal').click();
+                  $('#happy').click();
+                  //   $('#MessageBox').html("");s
+                  //  $('#Display').removeClass();
+              }
+
+              else {
 
                   $('#normal').click();
                   //   $('#MessageBox').html("");
                   //  $('#Display').removeClass();
               }
 
+
+              commandHistory = commandSelection;
 
           }
 

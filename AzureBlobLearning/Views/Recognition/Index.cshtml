@@ -19,6 +19,10 @@
 <script type="text/javascript" src="https://unpkg.com/@@tensorflow-models/mobilenet"></script>
 <script type="text/javascript" src="https://unpkg.com/@@tensorflow-models/knn-classifier"></script>
 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.1/vega.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.0-beta.15/vega-lite.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-beta.20/vega-embed.js"></script>
+
 
 <script>//Calls async Task<ActionResult> DeleteImage(string name) in the HomeController and Refreshes the page
     function deleteImage(item) {
@@ -102,10 +106,17 @@
 </div>
   
         <div  style="height:250px">
-       <span id="MessageBox" > </span></div>
+       <span id="MessageBox" > </span>
+                    <input type="button" value="View Chart" onclick="javascript:createChart()" />
+
+        </div>
         <p/>
              <div  style="height:250px">
              <span id="console" style="height:250px"></span></div>
+       
+  <div id="vis"></div>
+
+ 
     </div>
 
 </div>
