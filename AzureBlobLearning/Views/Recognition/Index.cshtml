@@ -6,12 +6,10 @@
 
 
 <!--<script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script> -->
-
-
 <!-- Webcam.min.js -->
 <!--<script type="text/javascript" src="js/ml5Model.js"></script>-->
 
- 
+
 <script type="text/javascript" src="~/js/webcam.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
@@ -19,9 +17,9 @@
 <script type="text/javascript" src="https://unpkg.com/@@tensorflow-models/mobilenet"></script>
 <script type="text/javascript" src="https://unpkg.com/@@tensorflow-models/knn-classifier"></script>
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.1/vega.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.0-beta.15/vega-lite.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-beta.20/vega-embed.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.1/vega.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.0-beta.15/vega-lite.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-beta.20/vega-embed.js"></script>
 
 
 <script>//Calls async Task<ActionResult> DeleteImage(string name) in the HomeController and Refreshes the page
@@ -56,115 +54,136 @@
 
 
 <div class="row">
-    <div id="Display" style="height:400px">
-        
-<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-        
-<link href='~/css/Faces.css' rel='stylesheet' type='text/css'>
 
-          <input id="happy" type="radio" style="visibility:hidden" name="smiley" value="Happy">
-   
-    <input id="normal" type="radio" style="visibility:hidden" name="smiley" value="Normal">
-  
-    <input id="angry" type="radio" style="visibility:hidden" name="smiley" value="Angry">
-   
-    <input id="furious" type="radio" style="visibility:hidden" name="smiley" value="Furious">
-    
-<div class="smiley">
-      <div class="steam-container">
-      <div class="squiggle-container squiggle-container-1">
-      <div class="squiggle">
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-           viewBox="0 0 28.1 80.6" style="enable-background:new 0 0 28.1 80.6;" xml:space="preserve">
-        <path class="" fill="none" stroke-width="11" stroke-linecap="round" stroke-miterlimit="10" d="M22.6,75.1c-8-5.6-15.2-10.5-15.2-19.9c0-12.1,14.1-17.2,14.1-29.6c0-9.1-6.7-15.7-16-20.1"/>
+    <div class="col-sm-12" id="Display" style="height:400px">
+
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+        <link href='~/css/Faces.css' rel='stylesheet' type='text/css'>
+
+        <input id="happy" type="radio" style="visibility:hidden" name="smiley" value="Happy">
+
+        <input id="normal" type="radio" style="visibility:hidden" name="smiley" value="Normal">
+
+        <input id="angry" type="radio" style="visibility:hidden" name="smiley" value="Angry">
+
+        <input id="furious" type="radio" style="visibility:hidden" name="smiley" value="Furious">
+
+        <div class="smiley">
+            <div class="steam-container">
+                <div class="squiggle-container squiggle-container-1">
+                    <div class="squiggle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 28.1 80.6" style="enable-background:new 0 0 28.1 80.6;" xml:space="preserve">
+                        <path class="" fill="none" stroke-width="11" stroke-linecap="round" stroke-miterlimit="10" d="M22.6,75.1c-8-5.6-15.2-10.5-15.2-19.9c0-12.1,14.1-17.2,14.1-29.6c0-9.1-6.7-15.7-16-20.1" />
+
+
+
          </svg>
-      </div>  
-    </div>
-      <div class="squiggle-container squiggle-container-2">
-      <div class="squiggle">
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-           viewBox="0 0 28.1 80.6" style="enable-background:new 0 0 28.1 80.6;" xml:space="preserve">
-        <path class="" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-miterlimit="10" d="M22.6,75.1c-8-5.6-15.2-10.5-15.2-19.9c0-12.1,14.1-17.2,14.1-29.6c0-9.1-6.7-15.7-16-20.1"/>
+                    </div>
+                </div>
+                <div class="squiggle-container squiggle-container-2">
+                    <div class="squiggle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 28.1 80.6" style="enable-background:new 0 0 28.1 80.6;" xml:space="preserve">
+                        <path class="" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-miterlimit="10" d="M22.6,75.1c-8-5.6-15.2-10.5-15.2-19.9c0-12.1,14.1-17.2,14.1-29.6c0-9.1-6.7-15.7-16-20.1" />
+
+
+
          </svg>
-      </div> 
-    </div>
-      <div class="squiggle-container squiggle-container-3">
-      <div class="squiggle">
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-           viewBox="0 0 28.1 80.6" style="enable-background:new 0 0 28.1 80.6;" xml:space="preserve">
-        <path class="" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-miterlimit="10" d="M22.6,75.1c-8-5.6-15.2-10.5-15.2-19.9c0-12.1,14.1-17.2,14.1-29.6c0-9.1-6.7-15.7-16-20.1"/>
+                    </div>
+                </div>
+                <div class="squiggle-container squiggle-container-3">
+                    <div class="squiggle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 28.1 80.6" style="enable-background:new 0 0 28.1 80.6;" xml:space="preserve">
+                        <path class="" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-miterlimit="10" d="M22.6,75.1c-8-5.6-15.2-10.5-15.2-19.9c0-12.1,14.1-17.2,14.1-29.6c0-9.1-6.7-15.7-16-20.1" />
+
+
+
          </svg>
-      </div>  
-    </div>
-    </div>
-  
-	<div class="eyes">
-		<div class="eye"></div>
-		<div class="eye"></div>
-	</div>
-	<div class="mouth"></div>
-</div>
-  
-        <div  style="height:250px">
-       <span id="MessageBox" > </span>
-                    <input type="button" value="View Chart" onclick="javascript:createChart()" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+            </div>
+            <div class="mouth"></div>
+        </div>
+           </div>
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-sm-12">  
+            <span id="MessageBox"> </span>
+        </div>
+        </div>
+
+
+
+        <div class="row">
+
+            <div class="col-sm-12"> 
+
+            <input type="button" value="View Chart" onclick="javascript:createChart()" />
+                 <span id="console" style="height:250px"></span>
+        <p />
+               <div id="vis"></div>
+        </div>
+
+
+
 
         </div>
-        <p/>
-             <div  style="height:250px">
-             <span id="console" style="height:250px"></span></div>
-       
-  <div id="vis"></div>
-
  
-    </div>
+        <div class="row" style="visibility:hidden">
+            <div class="col-sm-4">
+                <video autoplay playsinline muted id="webcam"></video>    <!-- Load index.js after the content of the page -->
 
-</div>
+            
 
+            </div>
 
-<div class="row">
-    <div class="col-sm-4">
-      <video style="visibility:hidden" autoplay playsinline muted id="webcam" ></video>    <!-- Load index.js after the content of the page -->
-    <script src="~/js/recognition.js"></script>
-
-
-    </div>
-  
-</div>
-  
- 
-
-<div class="row">
-    <div id="results" class="col-sm-4" style="height:240px; overflow:auto"></div>
-    </div>
-
- 
-    <div class="col-sm-12 col-sm-12 alert alert-light alert-dismissible fade show">
-        <br />
-    Captured images
-        <br />
-
-    </div>
+        </div>
 
 
 
-    <div class="row" style=" height:300px; overflow:auto">
-        @if (Model != null && Model.Count > 0)
-        {
-            foreach (var item in Model)
+        <div class="row" style="display:none">
+            <div id="results" class="col-sm-4" style="height:240px; overflow:auto"></div>
+        </div>
+
+
+
+
+        <div class="row" style="display:none" height:300px; overflow:auto">
+            <br />
+            Captured images
+            <br />
+
+            @if (Model != null && Model.Count > 0)
             {
+                foreach (var item in Model)
+                {
 
 
-                <div class="imageBlock">
-                    <a href="@item" target="_blank"><img class="thumb" crossorigin="anonymous" src="@item" alt="images" /> @item</a><br />
-                    <div class="deleteDiv"><img class="deleteIcon" src="~/Images/deleteImage.png" title="Delete Image" onclick="deleteImage('@item');" /></div>
-                </div>
+                    <div class="imageBlock">
+                        <a href="@item" target="_blank"><img class="thumb" crossorigin="anonymous" src="@item" alt="images" /> @item</a><br />
+                        <div class="deleteDiv"><img class="deleteIcon" src="~/Images/deleteImage.png" title="Delete Image" onclick="deleteImage('@item');" /></div>
+                    </div>
+                }
+
+                using (Html.BeginForm("DeleteAll", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @*<div class="fileUpload btn btn-danger"><span>Delete All Files</span><input type="submit" name="deleteAll" class="upload" /></div>*@
+                }
             }
 
-            using (Html.BeginForm("DeleteAll", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                @*<div class="fileUpload btn btn-danger"><span>Delete All Files</span><input type="submit" name="deleteAll" class="upload" /></div>*@
-            }
-        }
+        </div>
 
-    </div>
+
+   <script   src="~/js/recognition.js"></script>
+

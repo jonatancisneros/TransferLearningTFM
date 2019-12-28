@@ -206,11 +206,11 @@ async function app() {
 
              // console.log(classes[result.classIndex]);
 
-              if (result.confidences[result.label] == null) { return; }
+              if (result.confidences[result.label] == null) {  }
 
-              commandSelection = result.confidences[result.label];
+              commandSelection = classes[result.label];
 
-              if (commandSelection == "StandBy") { return; }
+              if (commandSelection == "StandBy") { $('#MessageBox').html("Stand By"); }
               if (commandSelection == "Start") {
 
                   $('#happy').click();
@@ -221,7 +221,7 @@ async function app() {
 
               }
               else if (commandSelection == "Cancel") {
-
+                  $('#MessageBox').html("Cancel");
                   $('#angry').click();
                //   $('#MessageBox').html("");
                 //  $('#Display').removeClass();
