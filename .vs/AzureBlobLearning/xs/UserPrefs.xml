@@ -1,8 +1,9 @@
 ﻿<Properties StartupConfiguration="{8BEE220B-15DD-46F3-AD56-5AA872E745D8}|Default">
   <MonoDevelop.Ide.ItemProperties.AzureBlobLearning PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="AzureBlobLearning/wwwroot/js/recognition.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AzureBlobLearning/wwwroot/js/cameracapture.js">
     <Files>
-      <File FileName="AzureBlobLearning/wwwroot/js/recognition.js" Line="1" Column="1" />
+      <File FileName="AzureBlobLearning/wwwroot/js/recognition.js" Line="18" Column="1" />
+      <File FileName="AzureBlobLearning/wwwroot/js/cameracapture.js" Line="7" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,7 +18,7 @@
               <Node name="wwwroot" expanded="True">
                 <Node name="css" expanded="True" />
                 <Node name="js" expanded="True">
-                  <Node name="recognition.js" selected="True" />
+                  <Node name="cameracapture.js" selected="True" />
                 </Node>
               </Node>
             </Node>

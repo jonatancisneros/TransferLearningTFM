@@ -1,6 +1,7 @@
 let net;
 const webcamElement = document.getElementById('webcam');
 var commandHistory = "StandBy";
+let state = "StandBy";
 
 const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Cancel', 'Confirm', 'StandBy', 'Start'];
 
@@ -8,6 +9,19 @@ const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Cancel', 'Confirm
 
 var chartValues = [];
 
+
+function startTimer()
+{
+    let  intervalId = window.setInterval(function () {
+
+        state = "StandBy";
+        console.log(state);
+
+
+    }, 3000);
+
+
+}
 
 function createChart() {
     var spec = {
@@ -111,6 +125,7 @@ async function app() {
 
 
     $('.thumb').each(function () {
+        state = "StandBy";
 
 
         var img2 = document.createElement('img'); // Use DOM HTMLImageElement
@@ -206,13 +221,18 @@ async function app() {
 
              // console.log(classes[result.classIndex]);
 
-              if (result.confidences[result.label] == null) {  }
+
+              if (state != "waitingForResponse") { 
+
+
 
               commandSelection = classes[result.label];
 
               if (commandSelection == "StandBy") { $('#MessageBox').html("Stand By"); }
-              if (commandSelection == "Start") {
+              if (commandSelection == "Start" || (commandSelection == "Confirm" && commandHistory=="StandBy"  ) ) {
 
+                  state = "waitingForResponse";
+                 
                   $('#happy').click();
                 //  $('#Display').removeClass();
                  // $('#Display').addClass('alert-success alert-dismissible fade show');
@@ -228,16 +248,25 @@ async function app() {
               } else if (commandSelection == "2") {
 
                   $('#MessageBox').html("Confirm number Two?");
+                  commandHistory = "2";
                  //   $('#MessageBox').html("");
                   //  $('#Display').removeClass();
               }
 
-              else if (commandSelection == "Confirm") {
-                  if (commandHistory == "2");
-                  alert('confirmed number 2');
+              else if (commandSelection == "Confirm" ) {
 
-                  $('#normal').click();
-                  $('#happy').click();
+                 
+                  if (commandHistory == "2");
+
+                  {
+                     // alert('confirmed number 2');
+
+
+
+                      $('#normal').click();
+                      $('#MessageBox').html("Number 2 confirmed");
+                      console.log("Number 2 confirmed");
+                  }
                   //   $('#MessageBox').html("");s
                   //  $('#Display').removeClass();
               }
@@ -250,8 +279,10 @@ async function app() {
               }
 
 
-              commandHistory = commandSelection;
+                  commandHistory = commandSelection;
+                  state = "StandBy";
 
+              }
           }
 
 
