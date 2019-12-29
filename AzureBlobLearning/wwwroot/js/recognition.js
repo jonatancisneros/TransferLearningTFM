@@ -2,7 +2,7 @@ let net;
 const webcamElement = document.getElementById('webcam');
 var commandHistory = "StandBy";
 let state = "StandBy";
-
+var count = 0;
 const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Cancel', 'Confirm', 'StandBy', 'Start'];
 
 //const classes = ['Confirm',  'Start','StandBy'];
@@ -108,7 +108,7 @@ async function app() {
 
       //  $(".captures").append(imgv);
 
-         $('#MessageBox').html("Adding images to KNN: " + classId + " / " + classes[classId]);
+     //    $('#MessageBox').html("Adding images to KNN: " + classId + " / " + classes[classId]);
 
         const activation = net.infer(imgv, 'conv_preds');
 
@@ -125,7 +125,12 @@ async function app() {
 
 
     $('.thumb').each(function () {
-        state = "StandBy";
+
+        count = $('.thumb').length;
+
+        console.log("Adding " + count + " images");
+
+         state = "Training model";
 
 
         var img2 = document.createElement('img'); // Use DOM HTMLImageElement
@@ -141,6 +146,10 @@ async function app() {
 
 
         img2.onload = function () {
+
+            count -= 1;
+           
+            $('#MessageBox').html("Remaining " + count);
 
             let classValue = img2.src.substring(img2.src.lastIndexOf('/') + 1);
 
@@ -165,21 +174,21 @@ async function app() {
             addExampleFromExisting(img2, classes.indexOf(classValueParsed));
 
 
-            chartValues.push({ "class": classValueParsed,"values":1   });    
+            chartValues.push({ "class": classValueParsed, "values": 1 });
 
+            if (count <= 0)
+                state = "StandBy";
 
-          
-
-     
 
 
         };
 
 
+      
+
+
     });
 
-
-  
 
 
   
@@ -189,7 +198,7 @@ async function app() {
 
     
     while (true) {
-      if (classifier.getNumClasses() > 0) {
+        if (classifier.getNumClasses() > 0 && state != "Training model") {
 
         // Get the activation from mobilenet from the webcam.
         const activation = net.infer(webcamElement, 'conv_preds');
@@ -200,7 +209,7 @@ async function app() {
        //   const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9','cancel', 'confirm', 'select','start' ];
 
 
-          $('#MessageBox').html("");
+          //$('#MessageBox').html("");
 
           //console.log(result.confidences);
 
@@ -221,18 +230,24 @@ async function app() {
 
              // console.log(classes[result.classIndex]);
 
-
+              $('.widget').hide();
               if (state != "waitingForResponse") { 
 
 
 
               commandSelection = classes[result.label];
 
-              if (commandSelection == "StandBy") { $('#MessageBox').html("Stand By"); }
-              if (commandSelection == "Start" || (commandSelection == "Confirm" && commandHistory=="StandBy"  ) ) {
+                  if (commandSelection == "StandBy") {
+                     
+                      $('#MessageBox').html("Stand By");
+                      commandHistory = "StandBy";
+                      $('#normal').click();
+                  }
+
+              if (commandSelection == "Start" ) {
 
                   state = "waitingForResponse";
-                 
+                
                   $('#happy').click();
                 //  $('#Display').removeClass();
                  // $('#Display').addClass('alert-success alert-dismissible fade show');
@@ -245,35 +260,27 @@ async function app() {
                   $('#angry').click();
                //   $('#MessageBox').html("");
                 //  $('#Display').removeClass();
-              } else if (commandSelection == "2") {
+              } else if (commandSelection == "1") {
 
-                  $('#MessageBox').html("Confirm number Two?");
-                  commandHistory = "2";
+                  console.log("Showing weather");
+                  $('#weather').show();
+                  $('#happy').click();
+
                  //   $('#MessageBox').html("");
                   //  $('#Display').removeClass();
               }
 
-              else if (commandSelection == "Confirm" ) {
+              else if (commandSelection == "2" ) {
 
-                 
-                  if (commandHistory == "2");
-
-                  {
-                     // alert('confirmed number 2');
-
-
-
-                      $('#normal').click();
-                      $('#MessageBox').html("Number 2 confirmed");
-                      console.log("Number 2 confirmed");
-                  }
-                  //   $('#MessageBox').html("");s
-                  //  $('#Display').removeClass();
+                  $('#time').show();
+                  $('#happy').click();
+                  $('#MessageBox').html("Showing the time");
               }
 
               else {
 
                   $('#normal').click();
+                  $('#MessageBox').html("No sign");
                   //   $('#MessageBox').html("");
                   //  $('#Display').removeClass();
               }

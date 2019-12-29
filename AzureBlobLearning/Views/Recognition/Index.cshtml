@@ -55,7 +55,9 @@
 
 <div class="row">
 
-    <div class="col-sm-12" id="Display" style="height:400px">
+    
+   
+    <div class="col-sm-8" id="Display" style="height:400px">
 
         <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
@@ -113,15 +115,30 @@
             <div class="mouth"></div>
         </div>
            </div>
+
+     <div style="height: 400px;" class="col-sm-4">
+
+         <div id="time" class="widget col-sm-12" style="display:none; text-align:center;padding:1em 0;"> <h2><a style="text-decoration:none;" href="https://www.zeitverschiebung.net/en/city/3117735"><span style="color:gray;">Current local time in</span><br />Madrid, Spain</a></h2> <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=large&timezone=Europe%2FMadrid" width="100%" height="140" frameborder="0" seamless></iframe> </div>
+
+
+      <div id="weather"  class="widget col-sm-12" style="display:none" >
+         <a class="weatherwidget-io" href="https://forecast7.com/en/40d42n3d70/madrid/" data-label_1="MADRID" data-label_2="WEATHER" data-theme="orange" >MADRID WEATHER</a>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+</script>
+             </div>
+
+
+         <span id="MessageBox"> </span>
+
+       
+    </div>
         </div>
 
 
-        <div class="row">
+       
 
-            <div class="col-sm-12">  
-            <span id="MessageBox"> </span>
-        </div>
-        </div>
+    
 
 
 
