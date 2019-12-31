@@ -161,7 +161,7 @@ async function app() {
 
             count -= 1;
 
-           async  $('#MessageBox').html("Remaining " + count);
+            $('#MessageBox').html("Remaining " + count);
 
             let classValue = img2.src.substring(img2.src.lastIndexOf('/') + 1);
 
