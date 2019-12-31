@@ -1,31 +1,10 @@
 ﻿<Properties StartupConfiguration="{8BEE220B-15DD-46F3-AD56-5AA872E745D8}|Default">
   <MonoDevelop.Ide.ItemProperties.AzureBlobLearning PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="AzureBlobLearning/wwwroot/js/recognition.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AzureBlobLearning/Views/Recognition/Index.cshtml">
     <Files>
-      <File FileName="AzureBlobLearning/Views/Recognition/Index.cshtml" Line="119" Column="75" />
-      <File FileName="AzureBlobLearning/wwwroot/js/recognition.js" Line="80" Column="43" />
+      <File FileName="AzureBlobLearning/Views/Recognition/Index.cshtml" Line="11" Column="2" />
+      <File FileName="AzureBlobLearning/wwwroot/js/recognition.js" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="AzureBlobLearning" expanded="True">
-            <Node name="AzureBlobLearning" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Views" expanded="True">
-                <Node name="Home" expanded="True" />
-                <Node name="Recognition" expanded="True" />
-              </Node>
-              <Node name="wwwroot" expanded="True">
-                <Node name="css" expanded="True" />
-                <Node name="js" expanded="True">
-                  <Node name="recognition.js" selected="True" />
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

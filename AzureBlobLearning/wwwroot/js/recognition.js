@@ -9,10 +9,11 @@ const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Cancel', 'Confirm
 
 var chartValues = [];
 
+var AlexaTimerId;  
+var AlexaTimeLeft = 0;
 
-function startTimer()
-{
-    let  intervalId = window.setInterval(function () {
+function startTimer() {
+    let intervalId = window.setInterval(function () {
 
         state = "StandBy";
         console.log(state);
@@ -32,8 +33,8 @@ function createChart() {
         },
         "mark": "bar",
         "encoding": {
-            "x": {  "field": "class", "type": "ordinal" },
-            "y": { "aggregate": "sum","field": "values", "type": "quantitative" }
+            "x": { "field": "class", "type": "ordinal" },
+            "y": { "aggregate": "sum", "field": "values", "type": "quantitative" }
         }
     };
     vega.embed("#vis", spec);
@@ -47,32 +48,30 @@ async function app() {
 
 
 
-  
-  // Put the object into storage
 
-// Retrieve the object from storage
-  var retrievedObject = localStorage.getItem('TFMclassifier');
+    // Put the object into storage
 
-
-
- if(retrievedObject!=null)
-{
-  
-  classifier= knnClassifier.create();
-  
- // classifier.setClassifierDataset(JSON.parse(retrievedObject));
+    // Retrieve the object from storage
+    var retrievedObject = localStorage.getItem('TFMclassifier');
 
 
-} else
-{
-  classifier= knnClassifier.create();
+
+    if (retrievedObject != null) {
+
+        classifier = knnClassifier.create();
+
+        // classifier.setClassifierDataset(JSON.parse(retrievedObject));
 
 
-}
+    } else {
+        classifier = knnClassifier.create();
+
+
+    }
 
     $('#MessageBox').html("Loading mobilenet..");
-  console.log('Loading mobilenet..');
-  
+    console.log('Loading mobilenet..');
+
     // Load the model.
     net = await mobilenet.load();
     console.log('Successfully loaded model');
@@ -80,35 +79,48 @@ async function app() {
     $('#MessageBox').html("Model Loaded");
 
     await setupWebcam();
-  
+
     // Reads an image from the webcam and associates it with a specific class
     // index.
     const addExample = classId => {
-      // Get the intermediate activation of MobileNet 'conv_preds' and pass that
-      // to the KNN classifier.
+        // Get the intermediate activation of MobileNet 'conv_preds' and pass that
+        // to the KNN classifier.
 
- 
-      $(".captures").append(webcamElement); 
-      
-      const activation = net.infer(webcamElement, 'conv_preds');
-  
-      // Pass the intermediate activation to the classifier.
-      classifier.addExample(activation, classId);
 
-      classDS= classifier.getClassifierDataset();
+        $(".captures").append(webcamElement);
 
-      //localStorage.setItem('TFMclassifier', JSON.stringify(classDS));
-  
+        const activation = net.infer(webcamElement, 'conv_preds');
+
+        // Pass the intermediate activation to the classifier.
+        classifier.addExample(activation, classId);
+
+        classDS = classifier.getClassifierDataset();
+
+        //localStorage.setItem('TFMclassifier', JSON.stringify(classDS));
+
     };
+
+
+    const speak = () =>
+    {
+        var msg = new SpeechSynthesisUtterance('Hello world');
+        msg.rate = 0.7;
+        msg.pitch = 1;
+        window.speechSynthesis.speak(msg);
+      //  alert(msg);
+    }
+
+
+    
 
     const addExampleFromExisting = (imgv, classId) => {
         // Get the intermediate activation of MobileNet 'conv_preds' and pass that
         // to the KNN classifier.
 
 
-      //  $(".captures").append(imgv);
+        //  $(".captures").append(imgv);
 
-     //    $('#MessageBox').html("Adding images to KNN: " + classId + " / " + classes[classId]);
+        //    $('#MessageBox').html("Adding images to KNN: " + classId + " / " + classes[classId]);
 
         const activation = net.infer(imgv, 'conv_preds');
 
@@ -130,16 +142,16 @@ async function app() {
 
         console.log("Adding " + count + " images");
 
-         state = "Training model";
+        state = "Training model";
 
 
         var img2 = document.createElement('img'); // Use DOM HTMLImageElement
 
 
         img2.setAttribute('crossOrigin', 'anonymous');
-        img2.src =  $(this).attr('src');  
+        img2.src = $(this).attr('src');
 
-       
+
 
         img2.width = "400";
         img2.height = "400";
@@ -148,8 +160,8 @@ async function app() {
         img2.onload = function () {
 
             count -= 1;
-           
-            $('#MessageBox').html("Remaining " + count);
+
+           async  $('#MessageBox').html("Remaining " + count);
 
             let classValue = img2.src.substring(img2.src.lastIndexOf('/') + 1);
 
@@ -184,138 +196,188 @@ async function app() {
         };
 
 
-      
+
 
 
     });
 
 
 
-  
+
     $('#MessageBox').html("");
 
 
 
-    
+
     while (true) {
         if (classifier.getNumClasses() > 0 && state != "Training model") {
 
-        // Get the activation from mobilenet from the webcam.
-        const activation = net.infer(webcamElement, 'conv_preds');
-        // Get the most likely class and confidences from the classifier module.
+            // Get the activation from mobilenet from the webcam.
+            const activation = net.infer(webcamElement, 'conv_preds');
+            // Get the most likely class and confidences from the classifier module.
 
-        const result = await classifier.predictClass(activation);
-  
-       //   const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9','cancel', 'confirm', 'select','start' ];
+            let result = await classifier.predictClass(activation);
 
-
-          //$('#MessageBox').html("");
-
-          //console.log(result.confidences);
+            //   const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9','cancel', 'confirm', 'select','start' ];
 
 
-          if (result.label != null) {
+            //$('#MessageBox').html("");
+
+            //console.log(result.confidences);
 
 
-
-        /*    document.getElementById('console').innerText = `
-          prediction ID: ${result.label}\n
-          prediction: ${classes[result.label]}\n
-          probability: ${result.confidences[result.label]}\n
-          clases: ${JSON.stringify(classes)}\n
-          confidences: ${JSON.stringify(result.confidences)}
-        `;
-
-         */
-
-             // console.log(classes[result.classIndex]);
-
-              $('.widget').hide();
-              if (state != "waitingForResponse") { 
+            if (result.label != null) {
 
 
 
-              commandSelection = classes[result.label];
+                /*    document.getElementById('console').innerText = `
+                  prediction ID: ${result.label}\n
+                  prediction: ${classes[result.label]}\n
+                  probability: ${result.confidences[result.label]}\n
+                  clases: ${JSON.stringify(classes)}\n
+                  confidences: ${JSON.stringify(result.confidences)}
+                `;
+        
+                 */
 
-                  if (commandSelection == "StandBy") {
+                // console.log(classes[result.classIndex]);
+
+                $('.widget').hide();
+                $('#MessageBox').html("");
+
+                if (state != "waitingForResponse") {
+
+
+
+                    commandSelection = classes[result.label];
+
+                    if (commandSelection == "StandBy") {
+
+                        $('#MessageBox').html("Stand By");
+                        commandHistory = "StandBy";
+                        $('#normal').click();
+                    }
+
+                    if (commandSelection == "Start") {
+
+                        state = "waitingForResponse";
+
+                        $('#happy').click();
+                        //  $('#Display').removeClass();
+                        // $('#Display').addClass('alert-success alert-dismissible fade show');
+
+                        $('#MessageBox').html("Hello!");
+
+                    }
+                    else if (commandSelection == "Cancel") {
+                        $('#MessageBox').html("Cancel");
+                        $('#angry').click();
+                        //   $('#MessageBox').html("");
+                        //  $('#Display').removeClass();
+                    } else if (commandSelection == "1") {
+                        if (AlexaTimeLeft <= 0)
+                        {
+                            console.log("Showing weather");
+                            $('#weather').show();
+                            $('#happy').click();
+                        }
+                    }
+
+                    else if (commandSelection == "2") {
+
+                        if (AlexaTimeLeft <= 0) {
+                            $('#time').show();
+                            $('#happy').click();
+                            $('#MessageBox').html("Showing the time");
+                        }
+                    }
+                    else if (commandSelection == "3") {
+
+
+                        if (AlexaTimerId == null) {
+                            AlexaTimerId = setInterval(function () {
+                                AlexaTimeLeft -= 1;
+
+                            }, 1000);
+                        } else
+                        {
+                            if (AlexaTimeLeft <= 0) {
+                                AlexaTimeLeft = 10;
+                                $('#happy').click();
+                                $('#MessageBox').html("Alexa... Turn on the lamps...");
+                                responsiveVoice.speak("Alexa... Turn on the lamps...");
+                            } else {
+                                $('#MessageBox').html("Alexa... Turn on the lamps... Please hold on that position...");
+                            }
+
+                        }
+
                      
-                      $('#MessageBox').html("Stand By");
-                      commandHistory = "StandBy";
-                      $('#normal').click();
-                  }
-
-              if (commandSelection == "Start" ) {
-
-                  state = "waitingForResponse";
-                
-                  $('#happy').click();
-                //  $('#Display').removeClass();
-                 // $('#Display').addClass('alert-success alert-dismissible fade show');
-
-                  $('#MessageBox').html("Hello!");
-
-              }
-              else if (commandSelection == "Cancel") {
-                  $('#MessageBox').html("Cancel");
-                  $('#angry').click();
-               //   $('#MessageBox').html("");
-                //  $('#Display').removeClass();
-              } else if (commandSelection == "1") {
-
-                  console.log("Showing weather");
-                  $('#weather').show();
-                  $('#happy').click();
-
-                 //   $('#MessageBox').html("");
-                  //  $('#Display').removeClass();
-              }
-
-              else if (commandSelection == "2" ) {
-
-                  $('#time').show();
-                  $('#happy').click();
-                  $('#MessageBox').html("Showing the time");
-              }
-
-              else {
-
-                  $('#normal').click();
-                  $('#MessageBox').html("No sign");
-                  //   $('#MessageBox').html("");
-                  //  $('#Display').removeClass();
-              }
+                     
+                    } else if (commandSelection == "4") {
 
 
-                  commandHistory = commandSelection;
-                  state = "StandBy";
+                        if (AlexaTimerId == null) {
+                            AlexaTimerId = setInterval(function () {
+                                AlexaTimeLeft -= 1;
 
-              }
-          }
+                            }, 1000);
+                        } else {
+                            if (AlexaTimeLeft <= 0) {
+                                AlexaTimeLeft = 10;
+                                $('#happy').click();
+                                $('#MessageBox').html("Alexa... Turn off the lamps...");
+                                responsiveVoice.speak("Alexa... Turn off the lamps...");
+                            } else {
+                                $('#MessageBox').html("Alexa... Turn off the lamps... Please hold on that position...");
+
+                            }
+
+                        }
 
 
-      }
-  
-      await tf.nextFrame();
+
+                    } 
+                    else {
+
+                        $('#normal').click();
+                        $('#MessageBox').html("No sign");
+                        //   $('#MessageBox').html("");
+                        //  $('#Display').removeClass();
+                    }
+
+
+                    commandHistory = commandSelection;
+                    state = "StandBy";
+
+                }
+            }
+            
+        }
+
+        await tf.nextFrame();
+
+    
     }
-  }
+}
 
 
 async function setupWebcam() {
     return new Promise((resolve, reject) => {
-      const navigatorAny = navigator;
-      navigator.getUserMedia = navigator.getUserMedia ||
-          navigatorAny.webkitGetUserMedia || navigatorAny.mozGetUserMedia ||
-          navigatorAny.msGetUserMedia;
-      if (navigator.getUserMedia) {
-        navigator.getUserMedia({video: true},
-          stream => {
-            webcamElement.srcObject = stream;
-            webcamElement.addEventListener('loadeddata',  () => resolve(), false);
-          },
-          error => reject());
-      } else {
-        reject();
-      }
+        const navigatorAny = navigator;
+        navigator.getUserMedia = navigator.getUserMedia ||
+            navigatorAny.webkitGetUserMedia || navigatorAny.mozGetUserMedia ||
+            navigatorAny.msGetUserMedia;
+        if (navigator.getUserMedia) {
+            navigator.getUserMedia({ video: true },
+                stream => {
+                    webcamElement.srcObject = stream;
+                    webcamElement.addEventListener('loadeddata', () => resolve(), false);
+                },
+                error => reject());
+        } else {
+            reject();
+        }
     });
-  }
+}
 app();
