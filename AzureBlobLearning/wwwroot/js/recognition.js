@@ -314,7 +314,8 @@ async function app() {
 
                      
                      
-                    } else if (commandSelection == "4") {
+                    }
+                    else if (commandSelection == "4") {
 
 
                         if (AlexaTimerId == null) {
@@ -330,6 +331,52 @@ async function app() {
                                 responsiveVoice.speak("Alexa... Turn off the lamps...");
                             } else {
                                 $('#MessageBox').html("Alexa... Turn off the lamps... Please hold on that position...");
+
+                            }
+
+                        }
+
+
+
+                    } else if (commandSelection == "6") {
+
+
+                        if (AlexaTimerId == null) {
+                            AlexaTimerId = setInterval(function () {
+                                AlexaTimeLeft -= 1;
+
+                            }, 1000);
+                        } else {
+                            if (AlexaTimeLeft <= 0) {
+                                AlexaTimeLeft = 10;
+                                $('#happy').click();
+                                $('#MessageBox').html("Ok Google... Show me the news...");
+                                responsiveVoice.speak("Ok Google... Show me the news...");
+                            } else {
+                                $('#MessageBox').html("Ok Google... Show me the news... Please hold that position");
+
+                            }
+
+                        }
+
+
+
+                    } else if (commandSelection == "7") {
+
+
+                        if (AlexaTimerId == null) {
+                            AlexaTimerId = setInterval(function () {
+                                AlexaTimeLeft -= 1;
+
+                            }, 1000);
+                        } else {
+                            if (AlexaTimeLeft <= 0) {
+                                AlexaTimeLeft = 10;
+                                $('#happy').click();
+                                $('#MessageBox').html("Ok Google... play videos on youtube");
+                                responsiveVoice.speak("Ok Google... play videos on youtube");
+                            } else {
+                                $('#MessageBox').html("Ok Google... play videos on youtube... Please hold that position");
 
                             }
 
