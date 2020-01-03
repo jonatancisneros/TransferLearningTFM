@@ -1,9 +1,11 @@
 let net;
 const webcamElement = document.getElementById('webcam');
 var commandHistory = "StandBy";
-let state = "StandBy";
+let state = "Training model";
 var count = 0;
 const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Cancel', 'Confirm', 'StandBy', 'Start'];
+var LampsOn = false;
+var recognitionEnabled = false;
 
 //const classes = ['Confirm',  'Start','StandBy'];
 
@@ -258,7 +260,7 @@ async function app() {
                         $('#normal').click();
                     }
 
-                    if (commandSelection == "Start") {
+                    if (commandSelection == "Start" & !recognitionEnabled) {
 
                         state = "waitingForResponse";
 
@@ -266,15 +268,18 @@ async function app() {
                         //  $('#Display').removeClass();
                         // $('#Display').addClass('alert-success alert-dismissible fade show');
 
-                        $('#MessageBox').html("Hello!");
+                        $('#MessageBox').html("Recognition Enabled");
+
+                        recognitionEnabled = true;
 
                     }
-                    else if (commandSelection == "Cancel") {
+                    else if (commandSelection == "Cancel" & recognitionEnabled) {
                         $('#MessageBox').html("Cancel");
                         $('#angry').click();
+                        recognitionEnabled = false;
                         //   $('#MessageBox').html("");
                         //  $('#Display').removeClass();
-                    } else if (commandSelection == "1") {
+                    } else if (commandSelection == "1" & recognitionEnabled) {
                         if (AlexaTimeLeft <= 0)
                         {
                             console.log("Showing weather");
@@ -283,7 +288,7 @@ async function app() {
                         }
                     }
 
-                    else if (commandSelection == "2") {
+                    else if (commandSelection == "2" & recognitionEnabled) {
 
                         if (AlexaTimeLeft <= 0) {
                             $('#time').show();
@@ -291,7 +296,7 @@ async function app() {
                             $('#MessageBox').html("Showing the time");
                         }
                     }
-                    else if (commandSelection == "3") {
+                    else if (commandSelection == "3" & recognitionEnabled) {
 
 
                         if (AlexaTimerId == null) {
@@ -303,11 +308,16 @@ async function app() {
                         {
                             if (AlexaTimeLeft <= 0) {
                                 AlexaTimeLeft = 10;
+                                let onOff = 'off';
+                                if (!LampsOn) onOff = 'on';
+
                                 $('#happy').click();
-                                $('#MessageBox').html("Alexa... Turn on the lamps...");
-                                responsiveVoice.speak("Alexa... Turn on the lamps...");
+                                $('#MessageBox').html('Alexa... Turn '+  onOff +' the lamps...');
+                                responsiveVoice.speak('Alexa... Turn ' + onOff + ' the lamps...');
                             } else {
-                                $('#MessageBox').html("Alexa... Turn on the lamps... Please hold on that position...");
+
+                                $('#normal').click();
+                                $('#MessageBox').html('Alexa... Turn ' + onOff + ' the lamps... Please hold on that position...');
                             }
 
                         }
@@ -315,7 +325,7 @@ async function app() {
                      
                      
                     }
-                    else if (commandSelection == "4") {
+                    else if (commandSelection == "10" & recognitionEnabled) {
 
 
                         if (AlexaTimerId == null) {
@@ -327,10 +337,11 @@ async function app() {
                             if (AlexaTimeLeft <= 0) {
                                 AlexaTimeLeft = 10;
                                 $('#happy').click();
-                                $('#MessageBox').html("Alexa... Turn off the lamps...");
-                                responsiveVoice.speak("Alexa... Turn off the lamps...");
+                                $('#MessageBox').html("Ok Google, stop");
+                                responsiveVoice.speak("Ok Google, stop");
                             } else {
-                                $('#MessageBox').html("Alexa... Turn off the lamps... Please hold on that position...");
+                                $('#normal').click();
+                                $('#MessageBox').html("Ok Google, stop... Please hold on that position...");
 
                             }
 
@@ -338,7 +349,7 @@ async function app() {
 
 
 
-                    } else if (commandSelection == "6") {
+                    } else if (commandSelection == "6" & recognitionEnabled) {
 
 
                         if (AlexaTimerId == null) {
@@ -361,7 +372,7 @@ async function app() {
 
 
 
-                    } else if (commandSelection == "7") {
+                    } else if (commandSelection == "7" & recognitionEnabled) {
 
 
                         if (AlexaTimerId == null) {
@@ -388,7 +399,7 @@ async function app() {
                     else {
 
                         $('#normal').click();
-                        $('#MessageBox').html("No sign");
+                        $('#MessageBox').html("...");
                         //   $('#MessageBox').html("");
                         //  $('#Display').removeClass();
                     }
