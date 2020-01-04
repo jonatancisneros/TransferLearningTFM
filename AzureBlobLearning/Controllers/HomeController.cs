@@ -2,6 +2,7 @@
 using AzureBlobLearning.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -18,18 +19,18 @@ namespace AzureBlobLearning.Controllers
 
 		public async Task<ActionResult> Index()
 		{
-			try
-			{
-				var allBlobs = await _azureBlobService.ListAsync();
-				return View(allBlobs);
-			}
-			catch (Exception ex)
-			{
-				ViewData["message"] = ex.Message;
-				ViewData["trace"] = ex.StackTrace;
-				return View("Error");
-			}
-		}
+            try
+            {
+                var allBlobs = new List<Uri>();
+                return View(allBlobs);
+            }
+            catch (Exception ex)
+            {
+                ViewData["message"] = ex.Message;
+                ViewData["trace"] = ex.StackTrace;
+                return View("Error");
+            }
+        }
 
 		[HttpPost]
 		public async Task<ActionResult> UploadAsync(string Id)

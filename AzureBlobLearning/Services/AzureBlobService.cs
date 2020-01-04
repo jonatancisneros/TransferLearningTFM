@@ -56,18 +56,18 @@ namespace AzureBlobLearning.Services
 		{
 			var blobContainer = await _azureBlobConnectionFactory.GetBlobContainer();
 			var allBlobs = new List<Uri>();
-			BlobContinuationToken blobContinuationToken = null;
-			do
-			{
-				var response = await blobContainer.ListBlobsSegmentedAsync(blobContinuationToken);
-				foreach (IListBlobItem blob in response.Results)
-				{
-					if (blob.GetType() == typeof(CloudBlockBlob))
-						allBlobs.Add(blob.Uri);
-				}
-				blobContinuationToken = response.ContinuationToken;
-			} while (blobContinuationToken != null);
-			return allBlobs;
+            BlobContinuationToken blobContinuationToken = null;
+            do
+            {
+                var response = await blobContainer.ListBlobsSegmentedAsync(blobContinuationToken);
+                foreach (IListBlobItem blob in response.Results)
+                {
+                    if (blob.GetType() == typeof(CloudBlockBlob))
+                        allBlobs.Add(blob.Uri);
+                }
+                blobContinuationToken = response.ContinuationToken;
+            } while (blobContinuationToken != null);
+            return allBlobs;
 		}
 
 		public async Task UploadAsync(IFormFileCollection files,string fileName)
@@ -76,8 +76,9 @@ namespace AzureBlobLearning.Services
        
 			for (int i = 0; i < files.Count; i++)
 			{
-				var blob = blobContainer.GetBlockBlobReference(fileName + "_" + GetRandomBlobName(fileName));
-				using (var stream = files[i].OpenReadStream())
+				var blob = blobContainer.GetBlockBlobReference(fileName + "_" + GetRandomBlobName(fileName) + ".png");
+
+                using (var stream = files[i].OpenReadStream())
 				{
 					await blob.UploadFromStreamAsync(stream);
 

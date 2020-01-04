@@ -6,6 +6,8 @@ var count = 0;
 const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Cancel', 'Confirm', 'StandBy', 'Start'];
 var LampsOn = false;
 var recognitionEnabled = false;
+var onOff = 'off';
+
 
 //const classes = ['Confirm',  'Start','StandBy'];
 
@@ -113,7 +115,43 @@ async function app() {
     }
 
 
-    
+    const alexaLamps = (onOffLamp) =>{
+
+
+        if (AlexaTimerId == null) {
+            AlexaTimerId = setInterval(function () {
+                AlexaTimeLeft -= 1;
+
+            }, 1000);
+        } else {
+            if (AlexaTimeLeft <= 0) {
+                AlexaTimeLeft = 10;
+
+                if (onOffLamp) {
+
+                    onOff = 'on';
+
+                } else {
+
+                    onOff = 'off';
+                }
+
+
+
+                $('#happy').click();
+                $('#MessageBox').html('Alexa... Turn ' + onOff + ' the lamps...');
+                responsiveVoice.speak('Alexa... Turn ' + onOff + ' the lamps...');
+            } else {
+
+                $('#normal').click();
+                $('#MessageBox').html('Alexa... Turn ' + onOff + ' the lamps... Please hold on that position...');
+            }
+
+        }
+
+
+
+    }
 
     const addExampleFromExisting = (imgv, classId) => {
         // Get the intermediate activation of MobileNet 'conv_preds' and pass that
@@ -212,6 +250,8 @@ async function app() {
 
 
     while (true) {
+
+       
         if (classifier.getNumClasses() > 0 && state != "Training model") {
 
             // Get the activation from mobilenet from the webcam.
@@ -232,7 +272,7 @@ async function app() {
 
 
 
-                /*    document.getElementById('console').innerText = `
+                 document.getElementById('console').innerText = `
                   prediction ID: ${result.label}\n
                   prediction: ${classes[result.label]}\n
                   probability: ${result.confidences[result.label]}\n
@@ -240,8 +280,7 @@ async function app() {
                   confidences: ${JSON.stringify(result.confidences)}
                 `;
         
-                 */
-
+             
                 // console.log(classes[result.classIndex]);
 
                 $('.widget').hide();
@@ -260,7 +299,7 @@ async function app() {
                         $('#normal').click();
                     }
 
-                    if (commandSelection == "Start" & !recognitionEnabled) {
+                    if (commandSelection == "Start" ) {
 
                         state = "waitingForResponse";
 
@@ -298,34 +337,16 @@ async function app() {
                     }
                     else if (commandSelection == "3" & recognitionEnabled) {
 
-
-                        if (AlexaTimerId == null) {
-                            AlexaTimerId = setInterval(function () {
-                                AlexaTimeLeft -= 1;
-
-                            }, 1000);
-                        } else
-                        {
-                            if (AlexaTimeLeft <= 0) {
-                                AlexaTimeLeft = 10;
-                                let onOff = 'off';
-                                if (!LampsOn) onOff = 'on';
-
-                                $('#happy').click();
-                                $('#MessageBox').html('Alexa... Turn '+  onOff +' the lamps...');
-                                responsiveVoice.speak('Alexa... Turn ' + onOff + ' the lamps...');
-                            } else {
-
-                                $('#normal').click();
-                                $('#MessageBox').html('Alexa... Turn ' + onOff + ' the lamps... Please hold on that position...');
-                            }
-
-                        }
+                        alexaLamps(true);
 
                      
-                     
+                    } else if (commandSelection == "4" & recognitionEnabled) {
+
+                        alexaLamps(false);
+
+
                     }
-                    else if (commandSelection == "10" & recognitionEnabled) {
+                    else if (commandSelection == "9" & recognitionEnabled) {
 
 
                         if (AlexaTimerId == null) {
