@@ -1,20 +1,5 @@
-# Capstone project - Transfer Learning 
-
-##Overview
-
-###My Capstone project to complete the Data science Masters degree consists in an image clasification model that will translate signs into instructions for home devices.
-
-##Technologies used.
-
-### Azure blob Storage
-####I have used blob storage to upload all the images used for the several runs.
-
-### MVC Web APIs
-####I have used WEB APIs to store and retrieve the images. 
-
-### Tensorflow.js
-####
-
+# Enabling Hard of hearing people to use smart home devices 
+## Master's in Data Science thesis  
 
 ## Contents
 [What is the Hard-of-hearing smart home assistant?](#what-is-this-project-about?) <br>
@@ -36,6 +21,18 @@ This ad-on can run in any device with a camera and a screen and the examples sho
 This project was born from my interest in making AI projects for good by always being inclusive. 
 
 I also realized a use case where people that don't want to share their conversations can also benefit from this tool as their voice wouldn't be recorded considering that this tool can run completly offline.
+ 
+##Technologies used.
+
+1. Azure blob Storage
+I have used blob storage to upload all the images used for the several runs.
+
+2. MVC Web APIs
+I have used WEB APIs to store and retrieve the images. 
+
+3. Tensorflow.js
+For implementing two models, the one from mobilenet and also KNN.
+
 
 ## Why is it relevant?
 
