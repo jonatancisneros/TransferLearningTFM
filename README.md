@@ -47,9 +47,9 @@ Another benefit of this tool could be the possibility of making Sign language mo
 
 The project consists of two parts, the first one is a labeling tool that I built for the whole purpose of collecting and labeling the signs that I wanted to use for this project.
 
-This labeling tool is already deployed to (azure) [http://tfmkschool.azurewebsites.net/].
+This labeling tool is already deployed to (azure)[http://tfmkschool.azurewebsites.net/].
 
-The second part of the project is the recognition module which is the one that infers images from your web cam and it is also deployed into azure (here) [https://tfmkschool.azurewebsites.net/recognition].
+The second part of the project is the recognition module which is the one that infers images from your web cam and it is also deployed into azure (here)[https://tfmkschool.azurewebsites.net/recognition].
 
 If you whish to run the project in development mode I suggest you download Visual studio Community edition and run the solution file which is a .NET project.
 
@@ -57,12 +57,12 @@ This .NET project has a reference to the tensor flow library for Javascript.
 
 
 ## How do I use the application?
-The following (video) [https://www.youtube.com/watch?v=sKn2nvj3qBE&feature=youtu.be] shows the live application and sample commands. 
+The following (video)[https://www.youtube.com/watch?v=sKn2nvj3qBE&feature=youtu.be] shows the live application and sample commands. 
 
 
 ## How does it work?
 
-The project uses [transfer learning] (https://en.wikipedia.org/wiki/Transfer_learning), a technique that leverages the knowledge acquired from an existing model and then uses this knoledge for a didderent purpose.  
+The project uses [transfer learning](https://en.wikipedia.org/wiki/Transfer_learning), a technique that leverages the knowledge acquired from an existing model and then uses this knoledge for a didderent purpose.  
 
 ![Sample image](https://tfmkschool.blob.core.windows.net/tfm/3_1637137022949233882_3f90f26a-a103-4a2d-acbd-b4afe48bd898.png)
 
