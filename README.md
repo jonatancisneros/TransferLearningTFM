@@ -39,20 +39,20 @@ For implementing two models, the one from mobilenet and also KNN.
 
 ## Why is it relevant?
 
-Many of the smart home devices that are now being sold only work with [Google Home and Alexa("https://www.digitaltrends.com/home/best-google-home-compatible-devices/"). This is clearly leaving many people out of the possibility of using these excelent devices, for example, the elderly, kids with autism as well as other people with hard of hearing problems.
+Many of the smart home devices that are now being sold only work with [Google Home and Alexa](https://www.digitaltrends.com/home/best-google-home-compatible-devices). This is clearly leaving many people out of the possibility of using these excelent devices, for example, the elderly, kids with autism as well as other people with hard of hearing problems.
 
 It becomes relevant for everyone else as it enables people not wanting to speak out loud the same commands all the time to use their devices in a different way.
 
 Another benefit of this tool could be the possibility of making Sign language more universal, at least for some important keywords.
 
 
-## How do I install the project?
+##How do I install the project?
 
 The project consists of two parts, the first one is a labeling tool that I built for the whole purpose of collecting and labeling the signs that I wanted to use for this project.
 
-This labeling tool is already deployed to (azure)[http://tfmkschool.azurewebsites.net/].
+This labeling tool is already deployed to [azure](http://tfmkschool.azurewebsites.net).
 
-The second part of the project is the recognition module which is the one that infers images from your web cam and it is also deployed into azure (here)[https://tfmkschool.azurewebsites.net/recognition].
+The second part of the project is the recognition module which is the one that infers images from your web cam and it is also deployed into azure [here] (https://tfmkschool.azurewebsites.net/recognition).
 
 If you whish to run the project in development mode I suggest you download Visual studio Community edition and run the solution file which is a .NET project.
 
@@ -60,7 +60,7 @@ This .NET project has a reference to the tensor flow library for Javascript.
 
 
 ## How do I use the application?
-The following (video)[https://www.youtube.com/watch?v=sKn2nvj3qBE&feature=youtu.be] shows the live application and sample commands. 
+The following [video](https://www.youtube.com/watch?v=sKn2nvj3qBE&feature=youtu.be) shows the live application and sample commands. 
 
 
 ## How does it work?
