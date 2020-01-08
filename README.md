@@ -14,7 +14,8 @@
 [Limitations](#limitations)
 
 ## What is this project about?
-The Hard-of-hearing assistant is an application that capable of recognizing simple [sign language] (https://www.handspeak.com/word/search/index.php?id=1487) commands so it can translate them into voice assistant instructions and also present other useful information on the screen like the weather and time.
+The Hard-of-hearing assistant is an application that capable of recognizing simple 
+[sign language] (https://www.handspeak.com/word/search/index.php?id=1487 "Sign language") commands so it can translate them into voice assistant instructions and also present other useful information on the screen like the weather and time.
 
 This ad-on can run in any device with a camera and a screen and the examples shown are integrating two of the most important smart home devices, [Alexa]("https://developer.amazon.com/en-US/alexa) and Google Home (https://store.google.com/product/google_home").
 
@@ -36,7 +37,7 @@ For implementing two models, the one from mobilenet and also KNN.
 
 ## Why is it relevant?
 
-Many of the smart home devices that are now being sold only work with [Google Home and Alexa] (https://www.digitaltrends.com/home/best-google-home-compatible-devices/). This is clearly leaving many people out of the possibility of using these excelent devices, for example, the elderly, kids with autism as well as other people with hard of hearing problems.
+Many of the smart home devices that are now being sold only work with [Google Home and Alexa("https://www.digitaltrends.com/home/best-google-home-compatible-devices/"). This is clearly leaving many people out of the possibility of using these excelent devices, for example, the elderly, kids with autism as well as other people with hard of hearing problems.
 
 It becomes relevant for everyone else as it enables people not wanting to speak out loud the same commands all the time to use their devices in a different way.
 
