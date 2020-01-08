@@ -13,6 +13,9 @@
 [Performance](#performance) <br>
 [Limitations](#limitations)
 
+[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
+
+
 ## What is this project about?
 The Hard-of-hearing assistant is an application that capable of recognizing simple 
 [sign language] (https://www.handspeak.com/word/search/index.php?id=1487 "Sign language") commands so it can translate them into voice assistant instructions and also present other useful information on the screen like the weather and time.
