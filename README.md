@@ -12,15 +12,14 @@
 [Model breakdown](#model-breakdown) <br>
 [Performance](#performance) <br>
 [Limitations](#limitations)
-
-[test](https://www.google.com)
+ 
 
 
 ## What is this project about?
 The Hard-of-hearing assistant is an application that capable of recognizing simple 
 [sign language](https://www.handspeak.com/word/search/index.php?id=1487) commands so it can translate them into voice assistant instructions and also present other useful information on the screen like the weather and time.
 
-This ad-on can run in any device with a camera and a screen and the examples shown are integrating two of the most important smart home devices, [Alexa]("https://developer.amazon.com/en-US/alexa) and Google Home (https://store.google.com/product/google_home").
+This ad-on can run in any device with a camera and a screen and the examples shown are integrating two of the most important smart home devices, [Alexa](https://developer.amazon.com/en-US/alexa) and [Google Home](https://store.google.com/product/google_home) .
 
 This project was born from my interest in making AI projects for good by always being inclusive. 
 
