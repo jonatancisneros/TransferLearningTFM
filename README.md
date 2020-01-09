@@ -15,7 +15,7 @@
  
 
 
-## What is this project about?
+##What is this project about?
 The Hard-of-hearing assistant is an application that capable of recognizing simple 
 [sign language](https://www.handspeak.com/word/search/index.php?id=1487) commands so it can translate them into voice assistant instructions and also present other useful information on the screen like the weather and time.
 
@@ -72,17 +72,27 @@ The project uses [transfer learning](https://en.wikipedia.org/wiki/Transfer_lear
 
  
 ## Data
-The data has been collected using the labelling tool.
+The data has been collected using the labelling tool. Each session has been tested with about a thousand images. Results vary depending on the number of samples uploaded per each class.
 
 ## Project structure
 The project was built in .NET MVC and has two modules:
 
  - **Labelling module**: 
  
- - **Data**: Data is stored in azure blob storage .
+ - **Data**: Data is stored in azure blob storage. The blob storage is public and can be accessed through this API call:
+ 
  - **Recognition module**: 
  
+ The recognition module is using Text to speach so it can talk to the smart home devices. The following library was used for this purpose.
+ 
+ https://code.responsivevoice.org
+ 
+ 
 ## Model breakdown
+
+
+
+
 ### Mobile net
 
 ### KNN
