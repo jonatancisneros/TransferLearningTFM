@@ -90,6 +90,23 @@ The project was built in .NET MVC and has two modules:
  
 ## Model breakdown
 
+The tensor flow library allows us to implement tensor flow models in any browser.
+
+<script type="text/javascript" src="https://unpkg.com/@@tensorflow/tfjs"></script>
+
+
+The following models are loaded at runtime:
+
+Mobilenet:
+
+As discussed previously, mobilenet is a neural network trained with millions of images and this specific model allows us to capture an activation prior to the actual result.
+
+<script type="text/javascript" src="https://unpkg.com/@@tensorflow-models/mobilenet"></script>
+
+The KNN classifier model allows us to implement a KNN model that will be described in detail.
+
+<script type="text/javascript" src="https://unpkg.com/@@tensorflow-models/knn-classifier"></script>
+
 
 
 
