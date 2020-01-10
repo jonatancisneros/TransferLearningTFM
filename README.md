@@ -1,6 +1,9 @@
 # Enabling Hard of hearing people to use smart home devices 
 ## Master's in Data Science thesis  
 
+The original presentation about this project is located [Here](https://docs.google.com/presentation/d/1U8Fh9lIXX2PHpe9coVYaAeiIzGRLxv1RUURDaEwLVNk/edit?usp=sharing)
+
+
 ## Contents
 [What is the Hard-of-hearing smart home assistant?](#what-is-this-project-about?) <br>
 [Why is it relevant?](#why-is-it-relevant?) <br>
@@ -91,9 +94,9 @@ The project was built in .NET MVC and has two modules:
 ## Model breakdown
 
 The tensor flow library allows us to implement tensor flow models in any browser.
-
+```
 <script type="text/javascript" src="https://unpkg.com/@@tensorflow/tfjs"></script>
-
+```
 
 The following models are loaded at runtime:
 
@@ -101,11 +104,15 @@ Mobilenet:
 
 As discussed previously, mobilenet is a neural network trained with millions of images and this specific model allows us to capture an activation prior to the actual result.
 
+```
 <script type="text/javascript" src="https://unpkg.com/@@tensorflow-models/mobilenet"></script>
+```
 
 The KNN classifier model allows us to implement a KNN model that will be described in detail.
 
+```
 <script type="text/javascript" src="https://unpkg.com/@@tensorflow-models/knn-classifier"></script>
+```
 
 
 
