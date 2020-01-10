@@ -1,6 +1,9 @@
 # Enabling Hard of hearing people to use smart home devices 
 ## Master's in Data Science thesis  
 
+The original presentation about this project is located [Here](https://docs.google.com/presentation/d/1U8Fh9lIXX2PHpe9coVYaAeiIzGRLxv1RUURDaEwLVNk/edit?usp=sharing)
+
+
 ## Contents
 [What is the Hard-of-hearing smart home assistant?](#What-is-this-project-about?) <br>
 [Why is it relevant?](#why-is-it-relevant?) <br>
@@ -112,7 +115,6 @@ The project was built in .NET MVC and has two modules:
 
 The tensor flow library allows us to implement tensor flow models in any browser.
 
-```
 <script type="text/javascript" src="https://unpkg.com/@@tensorflow/tfjs"></script>
 ```
 
@@ -130,7 +132,9 @@ The KNN classifier model allows us to implement a KNN model that will be describ
 
 ```
 <script type="text/javascript" src="https://unpkg.com/@@tensorflow-models/knn-classifier"></script>
-```
+
+
+
 
 
 
