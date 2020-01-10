@@ -35,9 +35,9 @@ Below are some examples that were used for this project. As a reference, I have 
 | Training      | Reference |
 | ------------- |:-------------:| 
 | ![Sign Language2](NewsPaper.jpg) ![Sign Language2](newspaper2.jpg)   | ![Sign Language](ASLNewspaper.png)| 
-| ![Sign Language2](videos.jpg) ![Sign Language2](videos.jpg)   | ![Sign Language](ASLvideos.png)| 
-| ![Sign Language2](hello.jpg) ![Sign Language2](hello.jpg)   | ![Sign Language](aslhello.png)| 
-| ![Sign Language2](cancel.jpg) ![Sign Language2](cancel.jpg)   | ![Sign Language](aslcancel.png)| 
+| ![Sign Language2](videos.jpg) ![Sign Language2](videos.jpg)   | ![Sign Language](aslvideos.png)| 
+| ![Sign Language2](hello.jpg) ![Sign Language2](hello.jpg)   | ![Sign Language](aslhello.PNG)| 
+| ![Sign Language2](cancel.jpg) ![Sign Language2](cancel.jpg)   | ![Sign Language](aslcancel.PNG)| 
  
  
 ### Technologies used.
