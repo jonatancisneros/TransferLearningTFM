@@ -98,7 +98,7 @@ async function app() {
         // Pass the intermediate activation to the classifier.
         classifier.addExample(activation, classId);
 
-        classDS = classifier.getClassifierDataset();
+       // classDS = classifier.getClassifierDataset();
 
         //localStorage.setItem('TFMclassifier', JSON.stringify(classDS));
 
@@ -154,18 +154,11 @@ async function app() {
     }
 
     const addExampleFromExisting = (imgv, classId) => {
-        // Get the intermediate activation of MobileNet 'conv_preds' and pass that
-        // to the KNN classifier.
-
-
-        //  $(".captures").append(imgv);
-
-        //    $('#MessageBox').html("Adding images to KNN: " + classId + " / " + classes[classId]);
+ 
 
         const activation = net.infer(imgv, 'conv_preds');
 
-        // Pass the intermediate activation to the classifier.
-
+  
         classifier.addExample(activation, classId);
 
         classDS = classifier.getClassifierDataset();
