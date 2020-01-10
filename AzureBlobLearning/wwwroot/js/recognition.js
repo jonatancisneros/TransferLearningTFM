@@ -87,21 +87,15 @@ async function app() {
     // Reads an image from the webcam and associates it with a specific class
     // index.
     const addExample = classId => {
-        // Get the intermediate activation of MobileNet 'conv_preds' and pass that
-        // to the KNN classifier.
-
-
-        $(".captures").append(webcamElement);
+        
+       // $(".captures").append(webcamElement);
 
         const activation = net.infer(webcamElement, 'conv_preds');
 
         // Pass the intermediate activation to the classifier.
         classifier.addExample(activation, classId);
 
-       // classDS = classifier.getClassifierDataset();
-
-        //localStorage.setItem('TFMclassifier', JSON.stringify(classDS));
-
+ 
     };
 
 
@@ -256,13 +250,7 @@ async function app() {
 
             let result = await classifier.predictClass(activation);
 
-            //   const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9','cancel', 'confirm', 'select','start' ];
-
-
-            //$('#MessageBox').html("");
-
-            //console.log(result.confidences);
-
+            
 
             if (result.label != null) {
 

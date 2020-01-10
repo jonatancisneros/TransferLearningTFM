@@ -120,6 +120,76 @@ The project was built in .NET MVC and has two modules:
  
  - **Recognition module**: 
  
+The recognition module is mainly based on the following Javascript [file](https://tfmkschool.azurewebsites.net/js/recognition.js
+)
+
+```
+**https://tfmkschool.azurewebsites.net/js/recognition.js**
+
+
+```
+
+
+## Here are the major steps performed by the recognition model.
+
+
+1. Download all the images from the blob container using a call similar to: 
+
+https://tfmkschool.azurewebsites.net/imagelist/Data
+
+
+2. Loop through all the images loaded from the API and add them to the mobile net model in order to obtain its activation and pass them to the KNN classifier.
+
+```
+    const addExample = classId => {
+        
+         
+        // Obtain activation from mobilenet
+        const activation = net.infer(webcamElement, 'conv_preds');
+
+        // Pass the intermediate activation to the KNN classifier.
+        classifier.addExample(activation, classId);
+
+ 
+    };
+
+```
+
+3. Once the Classifier has included all images, start inference from web cam.
+```
+     if (classifier.getNumClasses() > 0 && state != "Training model") {
+
+            // Get the activation from mobilenet from the webcam.
+            const activation = net.infer(webcamElement, 'conv_preds');
+            // Get the most likely class and confidences from the classifier module.
+
+            let result = await classifier.predictClass(activation);
+
+            
+
+            if (result.label != null) {
+
+
+                //Show results
+                 document.getElementById('console').innerText = `
+                  prediction ID: ${result.label}\n
+                  prediction: ${classes[result.label]}\n
+                  probability: ${result.confidences[result.label]}\n
+                  clases: ${JSON.stringify(classes)}\n
+                  confidences: ${JSON.stringify(result.confidences)}
+                `;
+        
+
+```
+
+
+4. Invoke text to speach when needed.
+
+```
+  responsiveVoice.speak("Ok Google, stop");
+```
+
+
  The recognition module is using Text to speach so it can talk to the smart home devices. The following library was used for this purpose.
  
  https://code.responsivevoice.org
