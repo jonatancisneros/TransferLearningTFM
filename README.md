@@ -56,7 +56,6 @@ For implementing two models, the one from mobilenet and also KNN.
 4. Text to speech API
 To speak commands to the smart home devices, the result of the inference is parsed and converted into speech.
 
-![tfm](TFMProject.png)
 
 
 ## Why is it relevant?
@@ -115,9 +114,12 @@ alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 The project uses [transfer learning](https://en.wikipedia.org/wiki/Transfer_learning), a technique that leverages the knowledge acquired from an existing model and then uses this knowledge for a different purpose.  
 
-In this case, the model is **mobilenet** which was trained on millions of images and its output activation help simplifying an input image into a vector that can be easily used in another model.
-![Sample image](images.png)
+In this case, the model is **mobilenet** which was trained on millions of images and its output activation help simplifying an input image into an **activation** that can be easily used in another model. In this case the second model is a classifier that assigns a label to new images based on its similarity to the images used for training.
 
+
+Below you will find the components used for this application. As you can see, many of the components are Javascript libraries which means they all run on the client.
+
+![tfm](TFMProject.png)
 
  
 ## Data
