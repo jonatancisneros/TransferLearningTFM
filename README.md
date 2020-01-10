@@ -29,12 +29,15 @@ This project was born from my interest in making AI projects for good by always 
 
 I also realized a use case where people that don't want to share their conversations can also benefit from this tool as their voice wouldn't be recorded considering that this tool can run completly offline.
 
-
+Below are some examples that were used for this project. As a reference, I have used a dictionary of Sign language.
 
 
 | Training      | Reference |
 | ------------- |:-------------:| 
 | ![Sign Language2](NewsPaper.jpg) ![Sign Language2](newspaper2.jpg)   | ![Sign Language](ASLNewspaper.png)| 
+| ![Sign Language2](videos.jpg) ![Sign Language2](videos.jpg)   | ![Sign Language](ASLvideos.png)| 
+| ![Sign Language2](hello.jpg) ![Sign Language2](hello.jpg)   | ![Sign Language](ASLhello.png)| 
+| ![Sign Language2](cancel.jpg) ![Sign Language2](cancel.jpg)   | ![Sign Language](aslcancel.png)| 
  
  
 ### Technologies used.
@@ -97,12 +100,23 @@ In this case the model is **mobilenet** which was trained on millions of images 
 ## Data
 The data has been collected using the labelling tool develeloped specifically for this project. Each session has been tested with about a thousand images. Results vary depending on the number of samples uploaded per each class.
 
+The Data being used for the recognition website can be accessed in this [link](https://tfmkschool.azurewebsites.net/ImageList).
+
+Data is stored in azure blob storage.  It is also available to be consumed as an API to be used for reporting:
+
+```
+https://tfmkschool.azurewebsites.net/ImageList/Data
+```
+
+
+
+
+
+
 ## Project structure
 The project was built in .NET MVC and has two modules:
 
  - **Labelling module**: 
- 
- - **Data**: Data is stored in azure blob storage. The blob storage is public and can be accessed through this API call:
  
  - **Recognition module**: 
  
@@ -115,6 +129,7 @@ The project was built in .NET MVC and has two modules:
 
 The tensor flow library allows us to implement tensor flow models in any browser.
 
+```
 <script type="text/javascript" src="https://unpkg.com/@@tensorflow/tfjs"></script>
 ```
 
@@ -132,6 +147,7 @@ The KNN classifier model allows us to implement a KNN model that will be describ
 
 ```
 <script type="text/javascript" src="https://unpkg.com/@@tensorflow-models/knn-classifier"></script>
+```
 
 
 
@@ -140,7 +156,7 @@ The KNN classifier model allows us to implement a KNN model that will be describ
 
 ## Limitations
 
-I realized that the recorded images used for KNN have to be limited in order for the model to work properly in a browser.
+I realized that the recorded images used for KNN have to be limited in order for the model to work properly in a browser, otherwise it can slow down the client device.
 
 ## Conculsions
 
