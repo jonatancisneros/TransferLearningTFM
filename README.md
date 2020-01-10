@@ -34,7 +34,7 @@ I also realized a use case where people that don't want to share their conversat
 
 | Training      | Reference |
 | ------------- |:-------------:| 
-| ![Sign Language2](NewsPaper.jpg) ![Sign Language2](NewsPaper2.jpg)   | ![Sign Language](aslnewspaper.jpg)| 
+| ![Sign Language2](NewsPaper.jpg) ![Sign Language2](NewsPaper2.jpg)   | ![Sign Language](ASLNewspaper.png)| 
  
  
 ### Technologies used.
