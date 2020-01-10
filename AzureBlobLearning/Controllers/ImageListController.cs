@@ -31,6 +31,24 @@ namespace AzureBlobLearning.Controllers
 			}
 		}
 
+
+		public async Task<ActionResult> Data()
+		{
+			try
+			{
+				var allBlobs = await _azureBlobService.ListDataAsync();
+
+				
+				return Ok(allBlobs);
+			}
+			catch (Exception ex)
+			{
+				ViewData["message"] = ex.Message;
+				ViewData["trace"] = ex.StackTrace;
+				return View("Error");
+			}
+		}
+
 		[HttpPost]
 		public async Task<ActionResult> UploadAsync(string Id)
 		{

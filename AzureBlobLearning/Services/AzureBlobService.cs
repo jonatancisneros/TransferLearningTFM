@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 namespace AzureBlobLearning.Services
 {
 	public interface IAzureBlobService
+
 	{
+		Task<IEnumerable<String>> ListDataAsync();
+
 		Task<IEnumerable<Uri>> ListAsync();
 		Task UploadAsync(IFormFileCollection files, string fileName);
 		Task DeleteAsync(string fileUri);
@@ -68,6 +71,56 @@ namespace AzureBlobLearning.Services
                 blobContinuationToken = response.ContinuationToken;
             } while (blobContinuationToken != null);
             return allBlobs;
+		}
+
+
+		public async Task<IEnumerable<String>> ListDataAsync()
+		{
+			var blobContainer = await _azureBlobConnectionFactory.GetBlobContainer();
+			var allBlobs = new List<String>();
+			BlobContinuationToken blobContinuationToken = null;
+			do
+			{
+				var response = await blobContainer.ListBlobsSegmentedAsync(blobContinuationToken);
+				foreach (IListBlobItem blob in response.Results)
+				{
+					if (blob.GetType() == typeof(CloudBlockBlob))
+					{
+						String s = blob.Uri.AbsolutePath.Replace("/tfm/", "");
+						s = s.Substring(0, s.IndexOf("_"));
+						switch (s) 
+						{
+							case "1":
+								s = "Weather";
+								break;
+							case "2":
+								s = "Time";
+								break;
+							case "3":
+								s = "Alexa Lights";
+								break;
+							case "4":
+								s = "Alexa Lights OFF";
+								break;
+							case "6":
+								s = "Google News";
+								break;
+							case "7":
+								s = "Google Videos";
+								break;
+
+							case "9":
+								s = "Ok Google Stop";
+								break;
+
+						}
+
+						allBlobs.Add(s);
+					}
+				}
+				blobContinuationToken = response.ContinuationToken;
+			} while (blobContinuationToken != null);
+			return allBlobs;
 		}
 
 		public async Task UploadAsync(IFormFileCollection files,string fileName)
