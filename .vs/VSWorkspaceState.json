@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\AzureBlobLearning\\Controllers",
+    "\\AzureBlobLearning\\Services",
+    "\\AzureBlobLearning\\wwwroot",
+    "\\AzureBlobLearning\\wwwroot\\js"
   ],
-  "SelectedNode": "\\6_NewsPaper.png",
+  "SelectedNode": "\\AzureBlobLearning.sln",
   "PreviewInSolutionExplorer": false
 }
