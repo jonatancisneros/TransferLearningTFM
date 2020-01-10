@@ -1,4 +1,6 @@
-# Enabling Hard-of-hearing people to use smart home devices 
+# Silent Smart-Home
+
+## Enabling hearing-impared people to use smart home devices
 ## Master's in Data Science thesis  
 
 The original presentation about this project is located [Here](https://docs.google.com/presentation/d/1U8Fh9lIXX2PHpe9coVYaAeiIzGRLxv1RUURDaEwLVNk/edit?usp=sharing)
@@ -42,7 +44,8 @@ Below are some examples that were used for this project. As a reference, I have 
  
 ### Technologies used.
 
-There are technologies like Azure blob storage that I chose because of the ability to acquire free credits as a student together with my prior experience in using them.
+There are technologies like Azure blob storage that I selected based on my experience and my ability to acquire free credits as a student.
+
 
 1. Azure blob Storage
 I have used blob storage to upload all the images used for several runs.
